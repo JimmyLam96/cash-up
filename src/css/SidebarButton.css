@@ -1,13 +1,20 @@
 .btn {
+  /* flexbox */
+  display: flex;
+  justify-content: space-evenly;
+  /* fonts */
   font-family: "Quicksand";
   font-weight: 400;
+  font-size: 15px;
+  /* look and size */
   border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
   height: 35px;
-  width: 100%;
-  /*top - right - bottom - left*/
+  width: 85%;
+  /* others */
+  cursor: pointer;
+  /*top - left - bottom - right*/
   margin: 10px 0px 10px 0px;
+  transition: transform 0.3s ease;
 }
 
 .btn:hover {
@@ -23,6 +30,7 @@
 
 .btn--clicked {
   background-color: white;
+  font-size: 17px;
   color: var(--primary);
   border: none;
 }

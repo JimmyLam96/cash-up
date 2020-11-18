@@ -8,18 +8,19 @@ import SidebarButton from '../components/SidebarButton';
 function Sidebar() {
     return(
         <IconContext.Provider value={{ color: '#fff' }}>
-
-          <ul className='sidebar-items'>
+          <div className='sidebar-container'>
+            <div className='sidebar-items'>
             {SidebarData.map((item, index) => {
               return (
-                <SidebarButton key={index} name={item.title} buttonStyle={"btn--clicked"}>
+                <SidebarButton key={index} name={item.title} buttonStyle={"btn--default"}>
                   <Link to={item.path}>
                     {item.icon}
                   </Link>
                 </SidebarButton>
               );
             })}
-          </ul>
+            </div>
+          </div>
       </IconContext.Provider>
     );
 }
