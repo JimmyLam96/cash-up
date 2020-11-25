@@ -19,30 +19,14 @@
   height: 100vh;
 }
 
-.sidebar-container {
-  flex: 1;
-  /* margin: 1vh; */
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  max-width: 25vh;
-  background-color: var(--primary);
-}
-
 .content-container {
   flex: 3;
   border-radius: 25px;
-  /* background-color: aqua; */
 }
 
 .sidebar-items {
   width: 100%;
 }
-
-/*
-
-.content {
-  display: flex;
-} */
 
 .cashier,
 .delivery,

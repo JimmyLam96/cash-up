@@ -15,9 +15,7 @@ function App() {
   return (
     <Router>
       <nav className="main-container">
-        <nav className="sidebar-container">
-          <Sidebar/>
-        </nav>
+        <Sidebar/>
         <div className="content-container">
           <Switch>
             <Route path= '/' exact component={Cashier}/>

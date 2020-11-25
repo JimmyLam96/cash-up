@@ -1,26 +1,46 @@
-import React from 'react';
+import React, { useState } from "react";
 import "../css/SidebarButton.css";
-
-//different versions of the button
-const buttonStyles = new Set(["btn--default", "btn--clicked"]);
+import { Link, useLocation } from "react-router-dom";
+import { IconContext } from "react-icons/lib";
 
 function SidebarButton(props: SBBProps) {
-       
-    //first check if the parsed button styles actually is possible
-    const buttonStyle = buttonStyles.has(props.buttonStyle) ? props.buttonStyle : "btn--default";
+  //current path location of the application
+  const location = useLocation();
 
-    return(
-    <button className={`btn ${buttonStyle}`}>
-        {props.children}
-        {props.name}
-        </button>
-    )
+  return (
+    <IconContext.Provider
+      value={{
+        color: location.pathname === props.details.path ? "#00a99d" : "white",
+      }}
+    >
+      <button
+        className={`btn btn--${
+          location.pathname === props.details.path ? "clicked" : "default"
+        }`}
+      >
+        <Link
+          to={props.details.path}
+          className={`btn--content btn--content--${
+            location.pathname === props.details.path ? "clicked" : "default"
+          }`}
+        >
+          {props.children}
+          {props.details.icon}
+          {props.details.title}
+        </Link>
+      </button>
+    </IconContext.Provider>
+  );
 }
 
 export default SidebarButton;
 
 interface SBBProps {
-    name: string;
-    buttonStyle: string;
-    children?: any;
+  details: {
+    title: string;
+    path: string;
+    icon: JSX.Element;
+  };
+  buttonStyle: string;
+  children?: any;
 }
