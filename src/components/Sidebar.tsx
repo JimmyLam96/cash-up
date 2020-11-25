@@ -12,11 +12,7 @@ function Sidebar() {
             <div className='sidebar-items'>
             {SidebarData.map((item, index) => {
               return (
-                <SidebarButton key={index} name={item.title} buttonStyle={"btn--default"}>
-                  <Link to={item.path}>
-                    {item.icon}
-                  </Link>
-                </SidebarButton>
+                <SidebarButton key={index} item={item} buttonStyle={"default"}/>
               );
             })}
             </div>

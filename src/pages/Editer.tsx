@@ -39,7 +39,7 @@ function Editor() {
     return(
         <>
         <h1>Menu</h1>
-        <SidebarButton name="HELLO" buttonStyle="btn--default"/>
+        {/* <SidebarButton name="HELLO" buttonStyle="btn--default"/> */}
         <AiIcons.AiFillPlusCircle className='sidebar-items' onClick={() => setModalShow(true)}> 
         Launch vertically centered modal
         </AiIcons.AiFillPlusCircle>
