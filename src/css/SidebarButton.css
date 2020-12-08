@@ -3,12 +3,11 @@
   /* flexbox */
   display: flex;
   flex: 1;
-  justify-content: space-evenly;
   /* look and size */
-  border-radius: 8px;
-  height: 35px;
+  border-radius: 12px;
   width: 85%;
   border: none;
+  outline: none;
   /* others */
   cursor: pointer;
   /*top - left - bottom - right*/
@@ -21,9 +20,9 @@
   display: flex;
   flex: 1;
   justify-content: space-evenly;
+  align-self: center;
   /* fonts */
   font-family: "Quicksand";
-  font-weight: 400;
   font-size: 15px;
   text-decoration: none;
 }
