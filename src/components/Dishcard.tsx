@@ -4,8 +4,8 @@ import "../css/Dishcard.css";
 function Dishcard(props: DProps) {
   return (
     <button className={`dishcard`}>
-      <p>{props.details.title}</p>
-      <p>{props.details.price}</p>
+      {props.details.title}
+      {props.details.price}
     </button>
   );
 }
