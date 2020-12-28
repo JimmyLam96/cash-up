@@ -1,0 +1,29 @@
+.dishcard {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+
+  /* margin & padding */
+  margin: 10px;
+  padding: 10px;
+
+  /* look & feel */
+  font-weight: bolder;
+  background-color: white;
+  font-family: "Quicksand";
+
+  /* border */
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 8px;
+
+  /* shadow */
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* on click */
+.dishcard:active {
+  color: black;
+  transform: scale(0.95);
+}

@@ -13,27 +13,19 @@
 }
 
 .main-container {
-  background-color: red;
   display: flex;
   flex-direction: row;
   height: 100vh;
 }
 
 .content-container {
-  flex: 3;
-  border-radius: 25px;
-}
-
-.sidebar-items {
-  width: 100%;
+  display: flex;
+  flex-grow: 1;
 }
 
 .cashier,
 .delivery,
 .orders,
 .editor {
-  /* padding: 500px; */
-  flex: 1;
-  justify-content: center;
-  /* background-color: aqua; */
+  background-color: aqua;
 }
