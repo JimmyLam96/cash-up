@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@types/express-serve-static-core": "^4.17.17",
-    "express": "^4.17.1",
-    "ts-node-dev": "^1.1.1"
+    "express": "^4.17.1"
   }
 }
