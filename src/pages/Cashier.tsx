@@ -1,12 +1,16 @@
 import React from "react";
 import Dishcard from "../components/Dishcard";
+import Searchbar from "../components/Searchbar";
 import { DishesData } from "../tmp/DishesData";
+import "../css/Cashier.css";
 
 function Cashier() {
   return (
-    <div className="cashier-container">
-      <div className="searchbar-container"></div>
-      <div className="dishcard-container">
+    <div className="cashier">
+      <div className="searchbar-container">
+        <Searchbar />
+      </div>
+      <div className="dishcards-container">
         {DishesData.map((item, index) => {
           return <Dishcard key={index} details={item}></Dishcard>;
         })}

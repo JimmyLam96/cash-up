@@ -32,7 +32,7 @@
 
 /* Button variants*/
 .btn--default {
-  background-color: var(--primary);
+  background-color: transparent;
 }
 
 .btn--content--default {
@@ -47,4 +47,19 @@
 
 .btn--content--clicked {
   color: var(--primary);
+}
+
+.title {
+  font-family: "Quicksand";
+  font-size: 15px;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    display: none;
+  }
+  .btn {
+    transition: width 0.3s ease;
+  }
 }

@@ -1,13 +1,14 @@
 .sidebar-container {
   /* flexbox */
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: flex-end;
   /* look and size */
+  width: 200px;
+  transition: width 0.3s ease;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  max-width: 25vh;
+
   /* color */
   background-color: var(--primary);
 }
@@ -17,4 +18,13 @@
   flex: 0.3;
   flex-direction: column;
   align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar-container {
+    width: 80px;
+    transition: width 0.3s ease;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
 }

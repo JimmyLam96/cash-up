@@ -26,7 +26,7 @@ function SidebarButton(props: SBBProps) {
         >
           {props.children}
           {props.details.icon}
-          {props.details.title}
+          <p className="title"> {props.details.title}</p>
         </Link>
       </button>
     </IconContext.Provider>

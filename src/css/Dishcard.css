@@ -1,8 +1,6 @@
 .dishcard {
-  /* flexbox */
-  display: flex;
-  flex: 1;
-  justify-content: space-evenly;
+  height: 35px;
+  width: 100px;
 
   /* margin & padding */
   margin: 10px;

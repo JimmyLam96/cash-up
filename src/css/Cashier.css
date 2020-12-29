@@ -1,0 +1,25 @@
+.cashier {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  /* margin & padding */
+  margin: 2vh;
+  padding: 2vh;
+
+  background-color: aqua;
+}
+
+.searchbar-container {
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  flex: 0.2;
+}
+.dishcards-container {
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0.8;
+}

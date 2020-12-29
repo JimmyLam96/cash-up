@@ -1,0 +1,9 @@
+.searchbar {
+  background-color: var(--secondairy);
+  color: white;
+  /* background-image: url("searchicon.png"); */
+  height: 40px;
+  width: 150px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+}
