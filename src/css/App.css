@@ -19,16 +19,3 @@
   flex-direction: row;
   height: 100vh;
 }
-
-.cashier,
-.delivery,
-.orders,
-.editor {
-  /* flexbox */
-
-  /* margin & padding */
-  margin: 2vh;
-  padding: 2vh;
-
-  background-color: aqua;
-}

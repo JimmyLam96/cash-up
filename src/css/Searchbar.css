@@ -1,9 +1,22 @@
 .searchbar {
+  /* flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* colors */
+  color: gray;
   background-color: var(--secondairy);
+  /* dimensions */
+  width: 175px;
+  /* padding & margins */
+  padding: 10px;
+
+  border-radius: 8px;
+}
+
+.inputfield {
   color: white;
-  /* background-image: url("searchicon.png"); */
-  height: 40px;
-  width: 150px;
-  background-repeat: no-repeat;
-  padding-left: 40px;
+  background-color: var(--secondairy);
+  border: none;
+  outline: none;
 }

@@ -3,8 +3,8 @@
   width: 100px;
 
   /* margin & padding */
-  margin: 10px;
-  padding: 10px;
+  /*top - right - bottom - left*/
+  margin: 10px 10px 10px 0;
 
   /* look & feel */
   font-weight: bolder;

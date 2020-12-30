@@ -5,21 +5,26 @@
   flex-direction: column;
 
   /* margin & padding */
-  margin: 2vh;
+  /* margin: 2vh; */
   padding: 2vh;
 
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 .searchbar-container {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   display: flex;
   align-items: center;
   flex: 0.2;
+  padding: 10px;
 }
 .dishcards-container {
+  flex: 0.8;
+  padding: 10px;
+  /* background-color: red; */
+}
+.category-container {
   background-color: red;
   display: flex;
   flex-wrap: wrap;
-  flex: 0.8;
 }

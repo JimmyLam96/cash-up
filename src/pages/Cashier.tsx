@@ -12,7 +12,14 @@ function Cashier() {
       </div>
       <div className="dishcards-container">
         {DishesData.map((item, index) => {
-          return <Dishcard key={index} details={item}></Dishcard>;
+          return (
+            <div className="catergory-container">
+              <h1>{item.category}</h1>
+              {item.dishes.map((x) => {
+                return <Dishcard key={index} details={x}></Dishcard>;
+              })}
+            </div>
+          );
         })}
       </div>
     </div>
