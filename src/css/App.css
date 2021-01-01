@@ -3,6 +3,7 @@
 
 :root {
   --primary: #00a99d;
+  --secondairy: #66cbc4;
 }
 
 * {
@@ -14,18 +15,7 @@
 
 .main-container {
   display: flex;
+  flex: 1;
   flex-direction: row;
   height: 100vh;
-}
-
-.content-container {
-  display: flex;
-  flex-grow: 1;
-}
-
-.cashier,
-.delivery,
-.orders,
-.editor {
-  background-color: aqua;
 }

@@ -1,0 +1,33 @@
+.cashier {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  /* margin & padding */
+  padding: 4vh;
+
+  /* background-color: aqua; */
+}
+
+.searchbar-container {
+  /* background-color: aquamarine; */
+  display: flex;
+  align-items: center;
+  flex: 0.1;
+  padding: 10px;
+}
+.dishcards-container {
+  flex: 0.9;
+  padding: 10px;
+}
+.category-container {
+  /* background-color: yellow; */
+  padding: 10px 0 10px 0;
+}
+
+h1 {
+  font-size: 14px;
+  color: #4d4d4d;
+  font-family: "Quicksand";
+}

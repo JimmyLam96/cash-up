@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "../css/SidebarButton.css";
+import React from "react";
+import "../css/NavbarButton.css";
 import { Link, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 
-function SidebarButton(props: SBBProps) {
+function NavbarButton(props: SBBProps) {
   //current path location of the application
   const location = useLocation();
 
@@ -26,14 +26,14 @@ function SidebarButton(props: SBBProps) {
         >
           {props.children}
           {props.details.icon}
-          {props.details.title}
+          <p className="title"> {props.details.title}</p>
         </Link>
       </button>
     </IconContext.Provider>
   );
 }
 
-export default SidebarButton;
+export default NavbarButton;
 
 interface SBBProps {
   details: {
