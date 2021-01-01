@@ -5,8 +5,7 @@
   flex-direction: column;
 
   /* margin & padding */
-  /* margin: 2vh; */
-  padding: 2vh;
+  padding: 4vh;
 
   /* background-color: aqua; */
 }
@@ -15,16 +14,20 @@
   /* background-color: aquamarine; */
   display: flex;
   align-items: center;
-  flex: 0.2;
+  flex: 0.1;
   padding: 10px;
 }
 .dishcards-container {
-  flex: 0.8;
+  flex: 0.9;
   padding: 10px;
-  /* background-color: red; */
 }
 .category-container {
-  background-color: red;
-  display: flex;
-  flex-wrap: wrap;
+  /* background-color: yellow; */
+  padding: 10px 0 10px 0;
+}
+
+h1 {
+  font-size: 14px;
+  color: #4d4d4d;
+  font-family: "Quicksand";
 }
