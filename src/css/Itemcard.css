@@ -1,4 +1,4 @@
-.dishcard {
+.itemcard {
   height: 35px;
   width: 100px;
 
@@ -21,7 +21,7 @@
 }
 
 /* on click */
-.dishcard:active {
+.itemcard:active {
   color: black;
   transform: scale(0.95);
 }
