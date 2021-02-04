@@ -1,10 +1,9 @@
 .overview {
   display: flex;
   height: 95%;
-  /* width: 300px; */
+  width: 300px;
   flex-direction: column;
   justify-content: space-around;
-  /* background-color: red; */
   align-items: center;
 
   /* border */
@@ -13,8 +12,24 @@
   border-radius: 10px;
   border-color: lightgray;
 
+  font-family: "Quicksand";
+  transition: width 0.3s ease;
+
   /* shadow */
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 1024px) {
+  .overview {
+    width: 225px;
+    min-width: 225px;
+    transition: width 0.3s ease;
+  }
+}
+
+.button-container {
+  /*top - right - bottom - left*/
+  padding: 0 15px 0 15px;
 }
 
 .item-container {
@@ -28,7 +43,7 @@
   text-decoration: none;
 
   /*top - right - bottom - left*/
-  margin: 0 30px 0 30px;
+  margin: 0 15px 0 15px;
 
   background-color: white;
   border: none;
@@ -55,4 +70,9 @@ span {
   transition: 300ms all ease;
   opacity: 0;
   will-change: opacity;
+}
+
+.head-text {
+  font-family: "Quicksand";
+  font-size: 20px;
 }

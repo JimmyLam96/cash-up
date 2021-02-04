@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ItemType } from "../Interfaces";
-import OverviewItem from "./OverviewItem";
+import OverviewModal from "./OverviewModal";
 import "../css/Overview.css";
 
 function Overview(props: OProps) {
@@ -8,7 +8,7 @@ function Overview(props: OProps) {
 
   return (
     <div className="overview">
-      <b style={{ fontSize: "20px" }}>Current Order</b>
+      <b className="head-text">Current Order</b>
       <div className="button-container">
         <button className="button-type" onClick={() => setDelivery(0)}>
           Pick up
@@ -17,6 +17,7 @@ function Overview(props: OProps) {
           Delivery
         </button>
       </div>
+      {delivery > 0 ? <OverviewModal /> : null}
       <div className="item-container">{props.children}</div>
       <div className="footer">
         <div className="delivery">

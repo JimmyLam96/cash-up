@@ -1,0 +1,23 @@
+.overview-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+  /* border */
+  border-style: solid;
+  border-width: 1.5px;
+  border-radius: 10px;
+  border-color: lightgray;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}

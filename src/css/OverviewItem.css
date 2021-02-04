@@ -1,14 +1,15 @@
 .overview-item {
-  width: 165px;
+  width: 225px;
   display: flex;
   justify-content: space-between;
 
   /*top - right - bottom - left*/
   margin: 5px 0 5px 0;
+  padding: 0 20px 0 20px;
 }
 
 .details {
-  width: 110px;
+  width: 125px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
