@@ -1,4 +1,4 @@
-.overview {
+.summary {
   display: flex;
   height: 95%;
   width: 300px;
@@ -20,11 +20,16 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  .overview {
+  .summary {
     width: 225px;
     min-width: 225px;
     transition: width 0.3s ease;
   }
+}
+
+.head-text {
+  font-family: "Quicksand";
+  font-size: 20px;
 }
 
 .button-container {
@@ -72,7 +77,19 @@ span {
   will-change: opacity;
 }
 
-.head-text {
+.checkout {
+  height: 35px;
+  width: 155px;
+  background-color: var(--primary);
+
+  border-radius: 16px;
+
   font-family: "Quicksand";
-  font-size: 20px;
+  font-size: 16px;
+  color: white;
+}
+
+/* on click */
+.checkout:active {
+  transform: scale(0.95);
 }

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ItemType } from "../Interfaces";
-import OverviewModal from "./OverviewModal";
-import "../css/Overview.css";
+import SummaryModal from "./SummaryModal";
+import "../css/Summary.css";
 
-function Overview(props: OProps) {
+function Summary(props: SProps) {
   const [delivery, setDelivery] = useState(0);
 
   return (
-    <div className="overview">
+    <div className="summary">
       <b className="head-text">Current Order</b>
       <div className="button-container">
         <button className="button-type" onClick={() => setDelivery(0)}>
@@ -17,7 +17,7 @@ function Overview(props: OProps) {
           Delivery
         </button>
       </div>
-      {delivery > 0 ? <OverviewModal /> : null}
+      {delivery > 0 ? <SummaryModal /> : null}
       <div className="item-container">{props.children}</div>
       <div className="footer">
         <div className="delivery">
@@ -33,13 +33,14 @@ function Overview(props: OProps) {
           </p>
         </div>
       </div>
+      <button className="checkout">checkout</button>
     </div>
   );
 }
 
-export default Overview;
+export default Summary;
 
-interface OProps {
+interface SProps {
   selected: ItemType;
   totalAmount: number;
   children?: any;

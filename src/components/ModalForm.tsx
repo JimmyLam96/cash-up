@@ -23,7 +23,7 @@ function ModalForm(props: MFProps) {
       <input
         type={props.type}
         value={value}
-        min={props.type === "number" ? 0 : undefined}
+        min={props.type === "number" ? 1 : undefined}
         onChange={(e) => handleTextChange(e.target.value)}
       />
       <label className={isActive ? "Active" : ""} htmlFor={props.type}>

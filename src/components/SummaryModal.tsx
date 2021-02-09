@@ -1,14 +1,14 @@
 import React from "react";
-import "../css/OverviewModal.css";
+import "../css/SummaryModal.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ModalForm from "./ModalForm";
 
-function OverviewModal() {
+function SummaryModal() {
   const { register, handleSubmit, errors } = useForm();
 
   return (
-    <div className="overview-modal">
+    <div className="summary-modal">
       <div className="section">
         <ModalForm size="normal" type="address" />
         <ModalForm size="small" type="number" />
@@ -29,4 +29,4 @@ function OverviewModal() {
   );
 }
 
-export default OverviewModal;
+export default SummaryModal;

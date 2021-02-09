@@ -1,10 +1,10 @@
 import * as React from "react";
 import { ItemType } from "../Interfaces";
-import "../css/OverviewItem.css";
+import "../css/SummaryItem.css";
 
-function OverviewItem(props: OProps) {
+function SummaryItem(props: SIProps) {
   return (
-    <div className="overview-item">
+    <div className="summary-item">
       <div className="details">
         <p>{props.title}</p>
         <div className="buttons">
@@ -37,9 +37,9 @@ function OverviewItem(props: OProps) {
   );
 }
 
-export default OverviewItem;
+export default SummaryItem;
 
-interface OProps {
+interface SIProps {
   title: string;
   itemType: ItemType;
   addItem: (title: string, price: number) => void;

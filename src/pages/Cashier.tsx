@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Itemcard from "../components/Itemcard";
 import Searchbar from "../components/Searchbar";
 import { DishesData } from "../tmp/DishesData";
-import Overview from "../components/Overview";
+import Summary from "../components/Summary";
 import { ItemType } from "../Interfaces";
 import "../css/Cashier.css";
-import OverviewItem from "../components/OverviewItem";
+import SummaryItem from "../components/SummaryItem";
 
 function Cashier() {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -67,10 +67,10 @@ function Cashier() {
         </div>
       </div>
       <div className="right">
-        <Overview selected={selected} totalAmount={totalAmount}>
+        <Summary selected={selected} totalAmount={totalAmount}>
           {Object.keys(selected).map((title) => {
             return (
-              <OverviewItem
+              <SummaryItem
                 title={title}
                 itemType={selected}
                 addItem={addItem}
@@ -78,7 +78,7 @@ function Cashier() {
               />
             );
           })}
-        </Overview>
+        </Summary>
       </div>
     </div>
   );
