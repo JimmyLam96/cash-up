@@ -2,69 +2,28 @@ import React from "react";
 import "../css/OverviewModal.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import ModalForm from "./ModalForm";
 
 function OverviewModal() {
-  const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState("");
   const { register, handleSubmit, errors } = useForm();
-
-  function handleTextChange(text: string) {
-    setValue(text);
-
-    if (text !== "") {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }
 
   return (
     <div className="overview-modal">
       <div className="section">
-        <div className="float-label">
-          <input
-            type="address"
-            value={value}
-            onChange={(e) => handleTextChange(e.target.value)}
-          />
-          <label className={isActive ? "Active" : ""} htmlFor="address">
-            address
-          </label>
-        </div>
-        <div className="float-label number-label">
-          <input
-            min={1}
-            type="number"
-            value={value}
-            onChange={(e) => handleTextChange(e.target.value)}
-          />
-          <label className={isActive ? "Active" : ""} htmlFor="housenumber">
-            number
-          </label>
-        </div>
+        <ModalForm size="normal" type="address" />
+        <ModalForm size="small" type="number" />
       </div>
       <div className="section">
-        <div className="float-label number-label">
-          <input
-            min={1}
-            type="postalcode"
-            value={value}
-            onChange={(e) => handleTextChange(e.target.value)}
-          />
-          <label className={isActive ? "Active" : ""} htmlFor="postalcode">
-            postalcode
-          </label>
-        </div>
-        <div className="float-label">
-          <input
-            type="address"
-            value={value}
-            onChange={(e) => handleTextChange(e.target.value)}
-          />
-          <label className={isActive ? "Active" : ""} htmlFor="email">
-            city
-          </label>
-        </div>
+        <ModalForm size="small" type="postal" />
+        <ModalForm size="normal" type="city" />
+      </div>
+      <div className="section">
+        <ModalForm size="small" type="time" />
+        <ModalForm size="normal" type="phone number" />
+      </div>
+      <div className="section">
+        <ModalForm size="normal" type="firstname" />
+        <ModalForm size="normal" type="surname" />
       </div>
     </div>
   );
