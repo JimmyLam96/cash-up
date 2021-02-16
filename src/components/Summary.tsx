@@ -10,10 +10,20 @@ function Summary(props: SProps) {
     <div className="summary">
       <b className="head-text">Current Order</b>
       <div className="button-container">
-        <button className="button-type" onClick={() => setDelivery(0)}>
+        <button
+          className={`button-type ${
+            delivery == 0 ? "button-type-selected" : null
+          }`}
+          onClick={() => setDelivery(0)}
+        >
           Pick up
         </button>
-        <button className="button-type" onClick={() => setDelivery(1.95)}>
+        <button
+          className={`button-type ${
+            delivery > 0 ? "button-type-selected" : null
+          }`}
+          onClick={() => setDelivery(1.95)}
+        >
           Delivery
         </button>
       </div>
