@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src", "src/tmp/SidebarData.tsx"
+    "src", "src/tmp/NavbarData.tsx"
   ]
 }
