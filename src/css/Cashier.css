@@ -2,7 +2,7 @@
   /* flexbox */
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
 
   /* margin & padding */
   padding: 4vh;
@@ -10,15 +10,22 @@
   /* background-color: aqua; */
 }
 
+.left {
+  flex-direction: column;
+  flex: 0.8;
+}
+
+.right {
+  flex: 0.2;
+}
+
 .searchbar-container {
   /* background-color: aquamarine; */
   display: flex;
   align-items: center;
-  flex: 0.1;
   padding: 10px;
 }
-.dishcards-container {
-  flex: 0.9;
+.itemcards-container {
   padding: 10px;
 }
 .category-container {

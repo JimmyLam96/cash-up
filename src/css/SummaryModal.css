@@ -1,0 +1,17 @@
+.summary-modal {
+  display: flex;
+  flex-direction: column;
+  /*top - right - bottom - left*/
+  padding: 5px;
+  /* border */
+  border-style: solid;
+  border-width: 1.5px;
+  border-radius: 10px;
+  border-color: lightgray;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  max-width: 250px;
+}

@@ -14,13 +14,13 @@ function NavbarButton(props: SBBProps) {
       }}
     >
       <button
-        className={`btn btn--${
+        className={`btn btn-${
           location.pathname === props.details.path ? "clicked" : "default"
         }`}
       >
         <Link
           to={props.details.path}
-          className={`btn--content btn--content--${
+          className={`btn-content btn-content-${
             location.pathname === props.details.path ? "clicked" : "default"
           }`}
         >
