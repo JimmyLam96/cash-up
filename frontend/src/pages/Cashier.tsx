@@ -8,17 +8,30 @@ import SummaryItem from "../components/SummaryItem";
 import axios, { AxiosResponse } from "axios";
 
 function Cashier() {
+  const [searchTerm, setSearchTerm] = useState("");
   const [dishesData, setDishesData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selected, setSelected] = useState({} as ItemType);
 
   useEffect(() => {
     const result = axios.get(`http://localhost:4000/items`);
-
     result.then((x: AxiosResponse<any>) => {
       setDishesData(x.data);
+      setFilteredData(x.data);
     });
   }, []);
+
+  const setSearchInput = (input: string) => setSearchTerm(input.toLowerCase());
+
+  useEffect(() => {
+    const results = filteredData.filter(
+      (x: any) =>
+        x.dishes.some((y: any) => y.name.toLowerCase().includes(searchTerm)) ||
+        x.category.toLowerCase().includes(searchTerm)
+    );
+    setDishesData(results);
+  }, [searchTerm]);
 
   const addItem = (title: string, price: number) => {
     //add the to the global JSON
@@ -63,7 +76,7 @@ function Cashier() {
     <div className="cashier">
       <div className="left">
         <div className="searchbar-container">
-          <Searchbar />
+          <Searchbar value={searchTerm} onChange={setSearchInput} />
         </div>
         <div className="itemcards-container">
           {dishesData.map((x: any) => {
