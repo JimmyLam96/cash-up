@@ -16,15 +16,18 @@ export class ItemsService {
   }
 
   async create(item: Item): Promise<Item> {
-    const newItem = new this.itemModel(item);
-    return await newItem.save();
+      return await this.itemModel.findOneAndUpdate(
+        { category: item.category }, 
+        { $push: { dishes: item } }, 
+        { upsert: true }
+      ).catch((err: string) => new Error(err));
   }
 
   async delete(id: string): Promise<Item> {
     return await this.itemModel.findByIdAndRemove(id);
   }
 
-  async update(id: string, item: Item): Promise<Item> {
+    async update(id: string, item: Item): Promise<Item> {
     return await this.itemModel.findByIdAndUpdate(id, item, { new: true });
   }
 }

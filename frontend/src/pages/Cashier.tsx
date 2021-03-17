@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Itemcard from "../components/Itemcard";
 import Searchbar from "../components/Searchbar";
-import { DishesData } from "../tmp/DishesData";
 import Summary from "../components/Summary";
 import { ItemType } from "../Interfaces";
 import "../css/Cashier.css";
 import SummaryItem from "../components/SummaryItem";
+import axios, { AxiosResponse } from "axios";
 
 function Cashier() {
+  const [dishesData, setDishesData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selected, setSelected] = useState({} as ItemType);
+
+  useEffect(() => {
+    const result = axios.get(`http://localhost:4000/items`);
+
+    result.then((x: AxiosResponse<any>) => {
+      setDishesData(x.data);
+    });
+  }, []);
 
   const addItem = (title: string, price: number) => {
     //add the to the global JSON
@@ -21,7 +30,10 @@ function Cashier() {
         return { ...selected, [title]: update }; // return previous objects including the updated item
       });
     } else {
-      setSelected({ ...selected, [title]: { price: price, amount: 1 } });
+      setSelected({
+        ...selected,
+        [title]: { price: price, amount: 1 },
+      });
     }
     //add the cost of the item
     setTotalAmount(totalAmount + price);
@@ -54,12 +66,18 @@ function Cashier() {
           <Searchbar />
         </div>
         <div className="itemcards-container">
-          {DishesData.map((item) => {
+          {dishesData.map((x: any) => {
             return (
-              <div className="category-container">
-                <h1>{item.category}</h1>
-                {item.dishes.map((x) => {
-                  return <Itemcard details={x} onClick={addItem}></Itemcard>;
+              <div key={x.category} className="category-container">
+                <h1>{x.category}</h1>
+                {x.dishes.map((dish: any) => {
+                  return (
+                    <Itemcard
+                      key={dish._id}
+                      details={dish}
+                      onClick={addItem}
+                    ></Itemcard>
+                  );
                 })}
               </div>
             );
@@ -71,6 +89,7 @@ function Cashier() {
           {Object.keys(selected).map((title) => {
             return (
               <SummaryItem
+                key={title}
                 title={title}
                 itemType={selected}
                 addItem={addItem}

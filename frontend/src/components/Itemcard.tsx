@@ -5,10 +5,9 @@ function Itemcard(props: IProps) {
   return (
     <button
       className={"itemcard"}
-      onClick={() => props.onClick(props.details.title, props.details.price)}
+      onClick={() => props.onClick(props.details.name, props.details.price)}
     >
-      {props.details.title}
-      {props.details.price}
+      {props.details.name}
     </button>
   );
 }
@@ -17,9 +16,11 @@ export default Itemcard;
 
 interface IProps {
   details: {
-    title: string;
+    id: string;
+    name: string;
     price: number;
-    image?: string;
+    category: string;
+    description: string;
   };
   children?: any;
   onClick: (title: string, price: number) => void;
