@@ -1,23 +1,20 @@
 .summary-item {
-  width: 225px;
+  width: 210px;
   display: flex;
   justify-content: space-between;
-
   /*top - right - bottom - left*/
   margin: 5px 0 5px 0;
-  padding: 0 20px 0 20px;
 }
 
 .details {
-  width: 125px;
+  width: 75%;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
-  /* background-color: aquamarine; */
 }
 
 .buttons {
-  width: 40px;
+  width: 50px;
+  height: 25px;
   display: flex;
   justify-content: space-around;
   /* border */
@@ -37,6 +34,10 @@ button {
   border: none;
 }
 
-p {
+.summaryText {
+  width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-weight: bold;
+  overflow: hidden;
 }

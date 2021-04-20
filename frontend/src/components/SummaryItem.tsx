@@ -6,7 +6,7 @@ function SummaryItem(props: SIProps) {
   return (
     <div className="summary-item">
       <div className="details">
-        <p>{props.title}</p>
+        <p className="summaryText">{props.title}</p>
         <div className="buttons">
           <button
             onClick={() =>
