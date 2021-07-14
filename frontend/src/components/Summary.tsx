@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ItemType } from "../Interfaces";
+import { ItemType } from "../../../shared/interfaces/Interfaces";
 import SummaryModal from "./SummaryModal";
 import "../css/Summary.css";
 

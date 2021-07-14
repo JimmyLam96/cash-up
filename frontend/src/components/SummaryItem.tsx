@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ItemType } from "../Interfaces";
+import { ItemType } from "../../../shared/interfaces/Interfaces";
 import "../css/SummaryItem.css";
 
 function SummaryItem(props: SIProps) {
