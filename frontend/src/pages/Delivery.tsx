@@ -14,11 +14,11 @@ function Delivery() {
 
   return (
     <div className="delivery">
-      {ordersData.map((x: OrderEntry) => {
+      {/* {ordersData.map((x: OrderEntry) => {
         x.orders.map((y: Order) => {
           return <h1>{y.houseNumber[0]}</h1>;
         });
-      })}
+      })} */}
     </div>
   );
 }

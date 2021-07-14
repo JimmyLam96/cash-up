@@ -12,7 +12,7 @@ function Summary(props: SProps) {
       <div className="button-container">
         <button
           className={`button-type ${
-            delivery == 0 ? "button-type-selected" : null
+            delivery === 0 ? "button-type-selected" : null
           }`}
           onClick={() => setDelivery(0)}
         >
