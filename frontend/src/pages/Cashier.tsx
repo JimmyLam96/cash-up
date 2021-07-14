@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Itemcard from "../components/Itemcard";
 import Searchbar from "../components/Searchbar";
 import Summary from "../components/Summary";
-import { ItemType } from "../Interfaces";
+import { ItemType } from "../../../shared/interfaces/Interfaces";
 import "../css/Cashier.css";
 import SummaryItem from "../components/SummaryItem";
 import axios, { AxiosResponse } from "axios";

@@ -1,4 +1,4 @@
-# NestJS REST API
+## cash-up backend
 
 A CRUD REST API using the NestJS framework and MongoDB/Mongoose.
 
