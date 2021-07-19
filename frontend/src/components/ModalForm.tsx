@@ -21,10 +21,14 @@ function ModalForm(props: MFProps) {
       className={`float-label ${"normal" === props.size ? null : props.size}`}
     >
       <input
+        name={props.type}
         type={props.type}
         value={value}
         min={props.type === "number" ? 1 : undefined}
-        onChange={(e) => handleTextChange(e.target.value)}
+        onChange={(e) => {
+          handleTextChange(e.target.value);
+          props.handleChange(e);
+        }}
       />
       <label className={isActive ? "Active" : ""} htmlFor={props.type}>
         {props.type}
@@ -38,4 +42,5 @@ export default ModalForm;
 interface MFProps {
   size: "small" | "normal" | "large";
   type: string;
+  handleChange: any;
 }

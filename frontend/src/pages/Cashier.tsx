@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Itemcard from "../components/Itemcard";
 import Searchbar from "../components/Searchbar";
 import Summary from "../components/Summary";
-import { ItemType } from "../../../shared/interfaces/Interfaces";
+import { DetailsType, ItemType } from "../../../shared/interfaces/Interfaces";
 import "../css/Cashier.css";
 import SummaryItem from "../components/SummaryItem";
 import axios, { AxiosResponse } from "axios";
@@ -13,10 +13,11 @@ function Cashier() {
   const [filteredData, setFilteredData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selected, setSelected] = useState({} as ItemType);
+  const [orderDetails, setOrderDetails] = useState({} as DetailsType);
 
   useEffect(() => {
-    const result = axios.get(`http://localhost:4000/items`);
-    result.then((x: AxiosResponse<any>) => {
+    const itemsFetch = axios.get(`http://localhost:4000/items`);
+    itemsFetch.then((x: AxiosResponse<any>) => {
       setDishesData(x.data);
       setFilteredData(x.data);
     });
@@ -98,7 +99,11 @@ function Cashier() {
         </div>
       </div>
       <div className="right">
-        <Summary selected={selected} totalAmount={totalAmount}>
+        <Summary
+          selected={selected}
+          orderDetails={orderDetails}
+          totalAmount={totalAmount}
+        >
           {Object.keys(selected).map((title) => {
             return (
               <SummaryItem

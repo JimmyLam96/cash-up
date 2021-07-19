@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { ItemType } from "../../../shared/interfaces/Interfaces";
+import { DetailsType, ItemType } from "../../../shared/interfaces/Interfaces";
 import SummaryModal from "./SummaryModal";
+import useForm from "../utils/useForm";
 import "../css/Summary.css";
+import axios from "axios";
 
 function Summary(props: SProps) {
   const [delivery, setDelivery] = useState(0);
+  const [values, handleChange] = useForm();
+
+  function placeOrder() {
+    console.log(values);
+    // const order = {
+    //   platform: "cash-up",
+    //   status: "NEW",
+    //   address: { ...props.orderDetails },
+    // };
+    // axios.post(`http://localhost:4000/orders`, order);
+  }
 
   return (
     <div className="summary">
@@ -27,7 +40,7 @@ function Summary(props: SProps) {
           Delivery
         </button>
       </div>
-      {delivery > 0 ? <SummaryModal /> : null}
+      {delivery > 0 ? <SummaryModal handleChange={handleChange} /> : null}
       <div className="item-container">{props.children}</div>
       <div className="footer">
         <div className="delivery">
@@ -43,7 +56,14 @@ function Summary(props: SProps) {
           </p>
         </div>
       </div>
-      <button className="checkout">checkout</button>
+      <button
+        className="checkout"
+        onClick={() => {
+          placeOrder();
+        }}
+      >
+        checkout
+      </button>
     </div>
   );
 }
@@ -53,5 +73,6 @@ export default Summary;
 interface SProps {
   selected: ItemType;
   totalAmount: number;
+  orderDetails: DetailsType;
   children?: any;
 }
