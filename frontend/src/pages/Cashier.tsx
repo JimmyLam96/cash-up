@@ -6,14 +6,15 @@ import { DetailsType, ItemType } from "../../../shared/interfaces/Interfaces";
 import "../css/Cashier.css";
 import SummaryItem from "../components/SummaryItem";
 import axios, { AxiosResponse } from "axios";
+import { FormProvider } from "../utils/useForm"
 
 function Cashier() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [dishesData, setDishesData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [selected, setSelected] = useState({} as ItemType);
-  const [orderDetails, setOrderDetails] = useState({} as DetailsType);
+  const [selected, setSelected] = useState<ItemType>({} as ItemType);
+  const [orderDetails, setOrderDetails] = useState<DetailsType>({} as DetailsType);
 
   useEffect(() => {
     const itemsFetch = axios.get(`http://localhost:4000/items`);
@@ -35,7 +36,7 @@ function Cashier() {
   }, [searchTerm]);
 
   const addItem = (title: string, price: number) => {
-    //add the to the global JSON
+    //add the item to the global JSON
     const item = selected[title];
     if (item !== undefined) {
       setSelected((prevState) => {
@@ -99,23 +100,25 @@ function Cashier() {
         </div>
       </div>
       <div className="right">
-        <Summary
-          selected={selected}
-          orderDetails={orderDetails}
-          totalAmount={totalAmount}
-        >
-          {Object.keys(selected).map((title) => {
-            return (
-              <SummaryItem
-                key={title}
-                title={title}
-                itemType={selected}
-                addItem={addItem}
-                deleteItem={deleteItem}
-              />
-            );
-          })}
-        </Summary>
+        <FormProvider>
+          <Summary
+            selected={selected}
+            orderDetails={orderDetails}
+            totalAmount={totalAmount}
+          >
+            {Object.keys(selected).map((title) => {
+              return (
+                <SummaryItem
+                  key={title}
+                  title={title}
+                  itemType={selected}
+                  addItem={addItem}
+                  deleteItem={deleteItem}
+                />
+              );
+            })}
+          </Summary>
+        </FormProvider>
       </div>
     </div>
   );

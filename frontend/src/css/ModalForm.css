@@ -52,3 +52,7 @@
 .float-label .Active {
   transform: translate(-6px, -14px) scale(0.75);
 }
+
+input:invalid {
+  border-color: red;
+}
