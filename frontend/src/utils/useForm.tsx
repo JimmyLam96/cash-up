@@ -1,5 +1,5 @@
-import * as React from "react";
-import { createContext, useState, useEffect, useContext } from 'react'; 
+import React from "react";
+import { createContext, useState, useContext } from 'react'; 
 import { DetailsType } from "../../../shared/interfaces/Interfaces";
 
 const FormContext = createContext<value>({} as value);
@@ -8,20 +8,43 @@ export function useForm() {
     return useContext(FormContext);
 }
 
-//Provider that enables every child wrapped within it to have access to the form details when making a new order
+//provider that enables every child wrapped within it to have access to the form details when making a new order
 export function FormProvider({ children } : formProps) {
-    const [error, setError] = useState<string>("");
+    const [timeError, setTimeError] = useState<string>("");
+    const [postalError, setPostalError] = useState<string>("");
+    const [phoneError, setPhoneError] = useState<string>("");
     const [state, setState] = useState<DetailsType>({} as DetailsType);
 
     //verifies if users put in the correct values for each field
     function handleChange (e: any) {
+        //reset error and done do verification if the field is empty
         switch(e.target.name) {
             case "postal":
-                let postalRegex = new RegExp("[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z|A-Z]{2}");
+                
+                if(e.target.value === '') {
+                    setPostalError('')
+                    return
+                }
+                
+                const postalRegex = new RegExp("[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z|A-Z]{2}");
+
                 if(e.target.value.match(postalRegex)) {
                     return setState(state => ({ ...state , [e.target.name]: e.target.value}));
                 } else {
-                    setError(e.target.value)
+                    setPostalError("Postal code has the wrong format, please try again")
+                }
+                break;
+            case "time":
+                if(e.target.value === '') {
+                    setTimeError('')
+                    return
+                }
+
+                const timeRegex = new RegExp("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
+                if(e.target.value.match(timeRegex)) {
+                    return setState(state => ({ ...state , [e.target.name]: e.target.value}));
+                } else {
+                    setTimeError("Delivery time has the wrong format, please try again")
                 }
                 break;
             default:
@@ -31,7 +54,9 @@ export function FormProvider({ children } : formProps) {
 
     //values that can be accessed by the consumers of this provider
     const values: value = {
-        error: error,
+        timeError: timeError,
+        postalError: postalError,
+        phoneError: phoneError,
         state: state,
         handleChange: handleChange,
     }
@@ -49,7 +74,9 @@ interface formProps {
 }
 
 interface value {
-    error: string,
+    timeError: string,
+    postalError: string,
+    phoneError: string,
     state: DetailsType,
     handleChange: (e: any) => void,
 }

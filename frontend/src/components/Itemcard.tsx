@@ -1,11 +1,16 @@
 import React from "react";
+import { ItemDetails } from "../../../shared/interfaces/Interfaces";
 import "../css/Itemcard.css";
+import { useOrder } from "../utils/useOrder";
 
 function Itemcard(props: IProps) {
+
+  const { addItem } = useOrder();
+
   return (
     <button
       className={"itemcard"}
-      onClick={() => props.onClick(props.details.name, props.details.price)}
+      onClick={() => addItem(props.details.name, props.details.price)}
     >
       {props.details.name}
     </button>
@@ -15,13 +20,6 @@ function Itemcard(props: IProps) {
 export default Itemcard;
 
 interface IProps {
-  details: {
-    id: string;
-    name: string;
-    price: number;
-    category: string;
-    description: string;
-  };
+  details: ItemDetails;
   children?: any;
-  onClick: (title: string, price: number) => void;
 }

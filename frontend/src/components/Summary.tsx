@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { DetailsType, ItemType } from "../../../shared/interfaces/Interfaces";
+import React, { useState} from "react";
 import SummaryModal from "./SummaryModal";
 import "../css/Summary.css";
 import { useForm } from "../utils/useForm";
+import Alert from "./Alert";
+import { useOrder } from "../utils/useOrder";
 
 
-function Summary(props: SProps) {
+function Summary(props: SProps) { 
   const [delivery, setDelivery] = useState(0);
-  const { state, error } = useForm();
+  const { state, timeError } = useForm();
+  const { totalAmount } = useOrder();
+
 
   const placeOrder = () => {
     console.log(state)
@@ -25,6 +28,7 @@ function Summary(props: SProps) {
 
   return (
     <div className="summary">
+
       <b className="head-text">Current Order</b>
       <div className="button-container">
         <button
@@ -45,6 +49,7 @@ function Summary(props: SProps) {
         </button>
       </div>
       {delivery > 0 ? <SummaryModal/> : null}
+      {timeError && <Alert message={timeError}>{timeError}</Alert>}
       <div className="item-container">{props.children}</div>
       <div className="footer">
         <div className="delivery">
@@ -55,8 +60,8 @@ function Summary(props: SProps) {
           <span className={delivery > 0 ? "show" : ""}>{delivery}</span>
           <p>
             {delivery > 0
-              ? (props.totalAmount + delivery).toFixed(2)
-              : props.totalAmount.toFixed(2)}
+              ? (totalAmount + delivery).toFixed(2)
+              : totalAmount.toFixed(2)}
           </p>
         </div>
       </div>
@@ -75,8 +80,5 @@ function Summary(props: SProps) {
 export default Summary;
 
 interface SProps {
-  selected: ItemType;
-  totalAmount: number;
-  orderDetails: DetailsType;
   children?: any;
 }

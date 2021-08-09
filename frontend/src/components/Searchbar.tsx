@@ -1,8 +1,12 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
 import "../css/Searchbar.css";
+import { useOrder } from "../utils/useOrder";
 
-function Searchbar(props: SearchProps) {
+function Searchbar() {
+
+  const { searchTerm, setSearchInput} = useOrder();
+
   return (
     <form className="searchbar">
       <i className="icon">
@@ -11,9 +15,9 @@ function Searchbar(props: SearchProps) {
       <input
         placeholder="search"
         className="inputfield"
-        value={props.value}
+        value={searchTerm}
         onChange={(e) => {
-          props.onChange(e.target.value);
+          setSearchInput(e.target.value);
         }}
       ></input>
     </form>
@@ -22,7 +26,6 @@ function Searchbar(props: SearchProps) {
 
 export default Searchbar;
 
-interface SearchProps {
-  value: string;
-  onChange: (input: string) => void;
-}
+// interface SearchProps {
+//   onChange: (input: string) => void;
+// }

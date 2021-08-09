@@ -27,6 +27,23 @@ export interface DetailsType {
   lastName: string,
 }
 
+//type when we fetch all the itemcard for the cashier page (http://localhost:4000/items)
+export interface ItemFetch {
+  dishes: ItemDetails[]
+  _id: string,
+  category: string,
+  __v: 0
+}
+
+//type for each individual item when we fetch from the backend
+export interface ItemDetails  {
+  name: string,
+  category: string,
+  price: number,
+  description: string
+  _id: string
+}
+
 export interface OrderEntry {
   _id: string;
   orders: [Order]

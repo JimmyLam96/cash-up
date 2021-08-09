@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { OrderEntry, Order } from "../../../shared/interfaces/interfaces";
 
 function Delivery() {
   const [ordersData, setOrdersData] = useState([]);

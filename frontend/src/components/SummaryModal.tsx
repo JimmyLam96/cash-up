@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/SummaryModal.css";
 import ModalForm from "./ModalForm";
-import { FormProvider } from "../utils/useForm"
 
 
 function SummaryModal() {
@@ -31,7 +30,7 @@ function SummaryModal() {
         <ModalForm size="small" type="time" />
         <ModalForm
           size="normal"
-          type="phone number"
+          type="phone"
         />
       </div>
       <div className="section">

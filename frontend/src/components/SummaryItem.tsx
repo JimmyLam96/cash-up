@@ -1,8 +1,12 @@
-import * as React from "react";
+import React from "react";
 import { ItemType } from "../../../shared/interfaces/Interfaces";
 import "../css/SummaryItem.css";
+import { useOrder } from "../utils/useOrder";
 
 function SummaryItem(props: SIProps) {
+
+  const { addItem, deleteItem } = useOrder();
+
   return (
     <div className="summary-item">
       <div className="details">
@@ -10,7 +14,7 @@ function SummaryItem(props: SIProps) {
         <div className="buttons">
           <button
             onClick={() =>
-              props.deleteItem(props.title, props.itemType[props.title].price)
+              deleteItem(props.title, props.itemType[props.title].price)
             }
           >
             -
@@ -18,7 +22,7 @@ function SummaryItem(props: SIProps) {
           <b>{props.itemType[props.title].amount}</b>
           <button
             onClick={() =>
-              props.addItem(props.title, props.itemType[props.title].price)
+              addItem(props.title, props.itemType[props.title].price)
             }
           >
             +
@@ -42,6 +46,4 @@ export default SummaryItem;
 interface SIProps {
   title: string;
   itemType: ItemType;
-  addItem: (title: string, price: number) => void;
-  deleteItem: (title: string, price: number) => void;
 }
