@@ -8,7 +8,7 @@ import { useOrder } from "../utils/useOrder";
 
 function Summary(props: SProps) { 
   const [delivery, setDelivery] = useState(0);
-  const { state, timeError } = useForm();
+  const { state } = useForm();
   const { totalAmount } = useOrder();
 
 
@@ -49,7 +49,7 @@ function Summary(props: SProps) {
         </button>
       </div>
       {delivery > 0 ? <SummaryModal/> : null}
-      {timeError && <Alert message={timeError}>{timeError}</Alert>}
+      <Alert/>
       <div className="item-container">{props.children}</div>
       <div className="footer">
         <div className="delivery">
