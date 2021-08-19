@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React from "react";
 import SummaryModal from "./SummaryModal";
 import "../css/Summary.css";
 import { useForm } from "../utils/useForm";
@@ -7,24 +7,8 @@ import { useOrder } from "../utils/useOrder";
 
 
 function Summary(props: SProps) { 
-  const [delivery, setDelivery] = useState(0);
+  const { delivery, updateDelivery, totalAmount, placeOrder } = useOrder();
   const { state } = useForm();
-  const { totalAmount } = useOrder();
-
-
-  const placeOrder = () => {
-    console.log(state)
-    // console.log(state);
-    // const order = {
-    //   platform: "cash-up",
-    //   ...state
-    // };
-    // axios.post(`http://localhost:4000/orders`, order).then((res) =>
-    //   console.log(res)
-    // ).catch(e => {
-    //   console.log(e)
-    // });
-  }
 
   return (
     <div className="summary">
@@ -35,7 +19,7 @@ function Summary(props: SProps) {
           className={`button-type ${
             delivery === 0 ? "button-type-selected" : null
           }`}
-          onClick={() => setDelivery(0)}
+          onClick={() => updateDelivery(0)}
         >
           Pick up
         </button>
@@ -43,7 +27,7 @@ function Summary(props: SProps) {
           className={`button-type ${
             delivery > 0 ? "button-type-selected" : null
           }`}
-          onClick={() => setDelivery(1.95)}
+          onClick={() => updateDelivery(1.95)}
         >
           Delivery
         </button>
@@ -67,9 +51,7 @@ function Summary(props: SProps) {
       </div>
       <button
         className="checkout"
-        onClick={
-          placeOrder
-        }
+        onClick={() => placeOrder(state)}
       >
         checkout
       </button>

@@ -1,18 +1,17 @@
-import { Item } from "../../backend/src/items/interfaces/item.interface"
-
 export interface Order {
-  id: string;
   platform: string;
   customerId?: string;
   address: string;
   houseNumber: [number, string];
   postalCode: [number, string]
-  items: [Item];
-  status: "string";
+  items: {item: ItemDetails, amount: number}[];
+  status: string;
+  phoneNumber: number;
 }
 
 export interface ItemType {
   [key: string]: {
+    title: string
     price: number;
     amount: number;
   };

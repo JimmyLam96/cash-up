@@ -10,10 +10,7 @@ export function useForm() {
 
 //provider that enables every child wrapped within it to have access to the form details when making a new order
 export function FormProvider({ children } : formProps) {
-    const [timeError, setTimeError] = useState<string>("");
     const [errors, setErrors] = useState<object>({});
-    const [postalError, setPostalError] = useState<string>("");
-    const [phoneError, setPhoneError] = useState<string>("");
     const [state, setState] = useState<DetailsType>({} as DetailsType);
 
     //verifies if users put in the correct values for each field
@@ -57,9 +54,6 @@ export function FormProvider({ children } : formProps) {
     //values that can be accessed by the consumers of this provider
     const values: value = {
         errors: errors,
-        timeError: timeError,
-        postalError: postalError,
-        phoneError: phoneError,
         state: state,
         handleChange: handleChange,
     }
@@ -78,9 +72,6 @@ interface formProps {
 
 interface value {
     errors: object;
-    timeError: string,
-    postalError: string,
-    phoneError: string,
     state: DetailsType,
     handleChange: (e: any) => void,
 }

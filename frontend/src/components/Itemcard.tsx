@@ -10,7 +10,7 @@ function Itemcard(props: IProps) {
   return (
     <button
       className={"itemcard"}
-      onClick={() => addItem(props.details.name, props.details.price)}
+      onClick={() => addItem(props.details._id)}
     >
       {props.details.name}
     </button>
@@ -21,5 +21,4 @@ export default Itemcard;
 
 interface IProps {
   details: ItemDetails;
-  children?: any;
 }
