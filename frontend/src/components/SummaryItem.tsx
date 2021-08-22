@@ -1,24 +1,29 @@
-import * as React from "react";
-import { ItemType } from "../../../shared/interfaces/Interfaces";
+import React from "react";
+import { ItemDetails } from "../../../shared/interfaces/Interfaces";
 import "../css/SummaryItem.css";
+import { useOrder } from "../utils/useOrder";
 
 function SummaryItem(props: SIProps) {
+
+  const { selected, addItem, deleteItem } = useOrder();
+  // const item = selected.filter((x: {item: ItemDetails, amount: number}) => x.item._id === props.id)[0]
+
   return (
-    <div className="summary-item">
+    <div className="summary-item"> 
       <div className="details">
-        <p className="summaryText">{props.title}</p>
+        <p className="summaryText">{props.item.name}</p>
         <div className="buttons">
           <button
             onClick={() =>
-              props.deleteItem(props.title, props.itemType[props.title].price)
+              deleteItem(props.item._id)
             }
           >
             -
           </button>
-          <b>{props.itemType[props.title].amount}</b>
+          <b>{props.amount}</b>
           <button
             onClick={() =>
-              props.addItem(props.title, props.itemType[props.title].price)
+              addItem(props.item._id)
             }
           >
             +
@@ -28,8 +33,8 @@ function SummaryItem(props: SIProps) {
       <div className="price">
         <p>
           {(
-            props.itemType[props.title].amount *
-            props.itemType[props.title].price
+            props.amount *
+            props.item.price
           ).toFixed(2)}
         </p>
       </div>
@@ -40,8 +45,6 @@ function SummaryItem(props: SIProps) {
 export default SummaryItem;
 
 interface SIProps {
-  title: string;
-  itemType: ItemType;
-  addItem: (title: string, price: number) => void;
-  deleteItem: (title: string, price: number) => void;
+  item: ItemDetails
+  amount: number
 }

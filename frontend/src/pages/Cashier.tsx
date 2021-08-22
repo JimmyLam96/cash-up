@@ -1,96 +1,32 @@
-import React, { useEffect, useState } from "react";
-import Itemcard from "../components/Itemcard";
-import Searchbar from "../components/Searchbar";
-import Summary from "../components/Summary";
-import { ItemType } from "../../../shared/interfaces/Interfaces";
-import "../css/Cashier.css";
-import SummaryItem from "../components/SummaryItem";
-import axios, { AxiosResponse } from "axios";
+import React from 'react';
+import Itemcard from '../components/Itemcard';
+import Searchbar from '../components/Searchbar';
+import Summary from '../components/Summary';
+import { ItemDetails, ItemFetch } from '../../../shared/interfaces/Interfaces';
+import '../css/Cashier.css';
+import SummaryItem from '../components/SummaryItem';
+import { FormProvider } from '../utils/useForm';
+import { useOrder } from '../utils/useOrder';
+import { Item } from '../../../backend/src/items/interfaces/item.interface';
+import Categories from '../components/Categories';
 
 function Cashier() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [dishesData, setDishesData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [selected, setSelected] = useState({} as ItemType);
-
-  useEffect(() => {
-    const result = axios.get(`http://localhost:4000/items`);
-    result.then((x: AxiosResponse<any>) => {
-      setDishesData(x.data);
-      setFilteredData(x.data);
-    });
-  }, []);
-
-  const setSearchInput = (input: string) => setSearchTerm(input.toLowerCase());
-
-  useEffect(() => {
-    const results = filteredData.filter(
-      (x: any) =>
-        x.dishes.some((y: any) => y.name.toLowerCase().includes(searchTerm)) ||
-        x.category.toLowerCase().includes(searchTerm)
-    );
-    setDishesData(results);
-  }, [searchTerm]);
-
-  const addItem = (title: string, price: number) => {
-    //add the to the global JSON
-    const item = selected[title];
-    if (item !== undefined) {
-      setSelected((prevState) => {
-        let update = Object.assign({}, prevState[title]); // creating copy of the item to be updated
-        update.amount++; // update the amount of the selected item
-        return { ...selected, [title]: update }; // return previous objects including the updated item
-      });
-    } else {
-      setSelected({
-        ...selected,
-        [title]: { price: price, amount: 1 },
-      });
-    }
-    //add the cost of the item
-    setTotalAmount(totalAmount + price);
-  };
-
-  const deleteItem = (title: string, price: number) => {
-    //add the to the global JSON
-    const item = selected[title];
-    if (item !== undefined) {
-      setSelected((prevState) => {
-        let update = Object.assign({}, prevState[title]); // creating copy of the item to be updated
-        //if the item has been selected less than once we delete it.
-        if (update.amount > 1) {
-          update.amount--; // update the amount of the selected item
-          return { ...selected, [title]: update }; // return previous objects including the updated item
-        } else {
-          delete prevState[title];
-          return { ...selected };
-        }
-      });
-    }
-    //subtract the cost of the item
-    setTotalAmount(totalAmount - price);
-  };
+  const { items, fetchedCategories, selected } = useOrder();
 
   return (
     <div className="cashier">
       <div className="left">
         <div className="searchbar-container">
-          <Searchbar value={searchTerm} onChange={setSearchInput} />
+          <Searchbar />
         </div>
+        <Categories />
         <div className="itemcards-container">
-          {dishesData.map((x: any) => {
+          {fetchedCategories.map((x: ItemFetch) => {
             return (
-              <div key={x.category} className="category-container">
+              <div className="category-container">
                 <h1>{x.category}</h1>
-                {x.dishes.map((dish: any) => {
-                  return (
-                    <Itemcard
-                      key={dish._id}
-                      details={dish}
-                      onClick={addItem}
-                    ></Itemcard>
-                  );
+                {x.dishes.map((dish: ItemDetails) => {
+                  return <Itemcard key={dish._id} details={dish} />;
                 })}
               </div>
             );
@@ -98,19 +34,15 @@ function Cashier() {
         </div>
       </div>
       <div className="right">
-        <Summary selected={selected} totalAmount={totalAmount}>
-          {Object.keys(selected).map((title) => {
-            return (
-              <SummaryItem
-                key={title}
-                title={title}
-                itemType={selected}
-                addItem={addItem}
-                deleteItem={deleteItem}
-              />
-            );
-          })}
-        </Summary>
+        <FormProvider>
+          <Summary>
+            {selected.map((x: { item: ItemDetails; amount: number }) => {
+              return (
+                <SummaryItem key={x.item._id} item={x.item} amount={x.amount} />
+              );
+            })}
+          </Summary>
+        </FormProvider>
       </div>
     </div>
   );

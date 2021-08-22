@@ -8,6 +8,7 @@ import Cashier from "./pages/Cashier";
 import Delivery from "./pages/Delivery";
 import Orders from "./pages/Orders";
 import Editor from "./pages/Editer";
+import { OrderProvider } from "./utils/useOrder";
 
 function App() {
   return (
@@ -15,10 +16,12 @@ function App() {
       <div className="main-container">
         <Navbar />
         <Switch>
+        <OrderProvider>
           <Route path="/" exact component={Cashier} />
-          <Route path="/delivery" component={Delivery} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/editor" component={Editor} />
+        </OrderProvider>
+        <Route path="/delivery" component={Delivery} />
+        <Route path="/orders" component={Orders} />
+        <Route path="/editor" component={Editor} />
         </Switch>
       </div>
     </Router>
