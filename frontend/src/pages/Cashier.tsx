@@ -22,7 +22,7 @@ function Cashier() {
         <div className="itemcards-container">
           {fetchedCategories.map((x: ItemFetch) => {
             return (
-              <div className="category-container">
+              <div key={x._id} className="category-container">
                 <h1>{x.category}</h1>
                 {x.dishes.map((dish: ItemDetails) => {
                   return <Itemcard key={dish._id} details={dish} />;
