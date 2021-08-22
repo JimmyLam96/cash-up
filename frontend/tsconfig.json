@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,6 +18,8 @@
     "downlevelIteration": true
   },
   "include": [
-    "src", "src/tmp/NavbarData.tsx"
-, "../shared/interfaces/Interfaces.ts"  ]
+    "src",
+    "src/tmp/NavbarData.tsx",
+    "../shared/interfaces/Interfaces.ts"
+  ]
 }

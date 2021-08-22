@@ -8,7 +8,7 @@ import { useOrder } from "../utils/useOrder";
 
 function Summary(props: SProps) { 
   const { delivery, updateDelivery, totalAmount, placeOrder } = useOrder();
-  const { state } = useForm();
+  const { state, validateForm } = useForm();
 
   return (
     <div className="summary">
@@ -51,7 +51,7 @@ function Summary(props: SProps) {
       </div>
       <button
         className="checkout"
-        onClick={() => placeOrder(state)}
+        onClick={() => placeOrder(state, validateForm)}
       >
         checkout
       </button>
