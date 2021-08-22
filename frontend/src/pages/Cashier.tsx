@@ -7,11 +7,10 @@ import '../css/Cashier.css';
 import SummaryItem from '../components/SummaryItem';
 import { FormProvider } from '../utils/useForm';
 import { useOrder } from '../utils/useOrder';
-import { Item } from '../../../backend/src/items/interfaces/item.interface';
 import Categories from '../components/Categories';
 
 function Cashier() {
-  const { items, fetchedCategories, selected } = useOrder();
+  const { fetchedCategories, selected } = useOrder();
 
   return (
     <div className="cashier">

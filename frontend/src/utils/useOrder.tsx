@@ -26,6 +26,14 @@ export function OrderProvider({ children }: orderProps) {
   const [delivery, setDelivery] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  //enum for the status of each order
+  enum OrderStatus {
+    STATUS_NEW = 'NEW',
+    STATUS_PROCESSING = 'PROCESSING',
+    STATUS_DELIVERY = 'DELIVERY',
+    STATUS_COMPLETED = 'COMPLETED',
+  }
+
   //fetch on the intial mount all the fetchedCategories from the server
   useEffect(() => {
     const getfetchedCategories = axios.get(`http://localhost:4000/items`);
@@ -43,13 +51,15 @@ export function OrderProvider({ children }: orderProps) {
 
   //on changes to the searchTerm filter out the dishes (search functionality)
   useEffect(() => {
-    const results = filteredData.filter(
-      (x: any) =>
-        x.dishes.some((y: any) => y.name.toLowerCase().includes(searchTerm)) ||
-        x.category.toLowerCase().includes(searchTerm),
+    setfetchedCategories(
+      filteredData.filter(
+        (x: ItemFetch) =>
+          x.dishes.some((y: ItemDetails) =>
+            y.name.toLowerCase().includes(searchTerm),
+          ) || x.category.toLowerCase().includes(searchTerm),
+      ),
     );
-    setfetchedCategories(results);
-  }, [searchTerm]);
+  }, [searchTerm, filteredData]);
 
   const placeOrder = (
     customerDetails: DetailsType,
@@ -108,7 +118,7 @@ export function OrderProvider({ children }: orderProps) {
   const addItem = (_id: string) => {
     //check if the list of selected items contains the to be added item
     //we add the XOR such that item will evaluate to undefined and not throw an error for the check on line 77
-    const { item, amount } =
+    const { item } =
       selected.filter(
         (x: { item: ItemDetails; amount: number }) => x.item._id === _id,
       )[0] || {};
@@ -197,12 +207,4 @@ interface value {
   delivery: number;
   updateDelivery: (amount: number) => void;
   sortCategories: (category: string) => void;
-}
-
-//enum for the status of each order
-enum OrderStatus {
-  STATUS_NEW = 'NEW',
-  STATUS_PROCESSING = 'PROCESSING',
-  STATUS_DELIVERY = 'DELIVERY',
-  STATUS_COMPLETED = 'COMPLETED',
 }
