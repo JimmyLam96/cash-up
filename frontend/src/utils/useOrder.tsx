@@ -18,7 +18,7 @@ export function OrderProvider({ children }: orderProps) {
   const [items, setItems] = useState<ItemDetails[]>([]);
   const [fetchedCategories, setfetchedCategories] = useState<ItemFetch[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState<ItemFetch[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [selected, setSelected] = useState<
     { item: ItemDetails; amount: number }[]
@@ -37,7 +37,7 @@ export function OrderProvider({ children }: orderProps) {
   //fetch on the intial mount all the fetchedCategories from the server
   useEffect(() => {
     const getfetchedCategories = axios.get(`http://localhost:4000/items`);
-    getfetchedCategories.then((x: AxiosResponse<any>) => {
+    getfetchedCategories.then((x: AxiosResponse<ItemFetch[]>) => {
       setfetchedCategories(x.data);
       setFilteredData(x.data);
 

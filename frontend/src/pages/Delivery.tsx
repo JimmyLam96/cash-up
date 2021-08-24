@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import React from 'react';
+import { Order } from '../../../shared/interfaces/Interfaces';
+import { useDelivery } from '../utils/useDelivery';
 
 function Delivery() {
-  const [ordersData, setOrdersData] = useState([]);
-
-  useEffect(() => {
-    const result = axios.get(`http://localhost:4000/orders`);
-    result.then((x: AxiosResponse<any>) => {
-      console.log(x);
-      setOrdersData(x.data);
-    });
-  }, []);
+  const { ordersData } = useDelivery()
 
   return (
     <div className="delivery">
-      {ordersData.map((x: any) => {
-        return x;
+      {ordersData.map((x: Order) => {
+        return <div>{x.address}</div>
       })}
     </div>
   );
