@@ -1,0 +1,44 @@
+.ordercard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 175px;
+    height: 80px;
+
+    /* border */
+    border-style: solid;
+    border-color: dimgray;
+    border-width: 1px;
+    border-radius: 8px;
+
+    font-size: small;
+
+    margin: 10px 10px 10px 0;
+}
+
+.upper {
+    display: flex;
+    justify-content: center;
+    flex: 0.8;
+    justify-content: space-evenly;
+    margin: 5px
+}
+
+.upper-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-middle {
+    /* background-color: gold; */
+    height: 100%
+}
+
+.lower {
+    display: flex;
+    justify-content: center;
+    flex: 0.2;
+    justify-content: space-evenly;
+    /* height: 50px; */
+}

@@ -18,7 +18,9 @@ function Cashier() {
         <div className="searchbar-container">
           <Searchbar />
         </div>
-        <Categories />
+        <div className="categories-container">
+          <Categories />
+        </div>
         <div className="itemcards-container">
           {fetchedCategories.map((x: ItemFetch) => {
             return (

@@ -36,7 +36,7 @@ function Summary(props: SProps) {
       <Alert/>
       <div className="item-container">{props.children}</div>
       <div className="footer">
-        <div className="delivery">
+        <div>
           <span className={delivery > 0 ? "show" : ""}>Delivery fee</span>
           <p>Total</p>
         </div>

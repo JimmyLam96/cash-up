@@ -25,7 +25,3 @@ function Searchbar() {
 }
 
 export default Searchbar;
-
-// interface SearchProps {
-//   onChange: (input: string) => void;
-// }

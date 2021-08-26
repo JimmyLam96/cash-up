@@ -6,30 +6,24 @@
 
   /* margin & padding */
   padding: 4vh;
-
-  /* background-color: aqua; */
 }
 
 .left {
   flex-direction: column;
+  justify-content: space-between;
   flex: 0.8;
+  padding: 10px;
+}
+
+.left > div {
+  margin: 0px 0 10px 0;
 }
 
 .right {
   flex: 0.2;
 }
 
-.searchbar-container {
-  /* background-color: aquamarine; */
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-.itemcards-container {
-  padding: 10px;
-}
 .category-container {
-  /* background-color: yellow; */
   padding: 10px 0 10px 0;
 }
 
