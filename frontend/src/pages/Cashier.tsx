@@ -10,13 +10,13 @@ import { useOrder } from '../utils/useOrder';
 import Categories from '../components/Categories';
 
 function Cashier() {
-  const { fetchedCategories, selected } = useOrder();
+  const { fetchedCategories, selected, handleSearch, searchItems } = useOrder();
 
   return (
     <div className="cashier">
       <div className="left">
         <div className="searchbar-container">
-          <Searchbar />
+          <Searchbar searchTerm={searchItems} handleSearch={handleSearch} />
         </div>
         <div className="categories-container">
           <Categories />

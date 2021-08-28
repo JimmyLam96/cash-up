@@ -17,7 +17,7 @@ export function useOrder() {
 export function OrderProvider({ children }: orderProps) {
   const [items, setItems] = useState<ItemDetails[]>([]);
   const [fetchedCategories, setfetchedCategories] = useState<ItemFetch[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchItems, setSearchItems] = useState<string>('');
   const [filteredData, setFilteredData] = useState<ItemFetch[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [selected, setSelected] = useState<
@@ -49,17 +49,17 @@ export function OrderProvider({ children }: orderProps) {
     });
   }, []);
 
-  //on changes to the searchTerm filter out the dishes (search functionality)
+  //on changes to the searchItems filter out the dishes (search functionality)
   useEffect(() => {
     setfetchedCategories(
       filteredData.filter(
         (x: ItemFetch) =>
           x.dishes.some((y: ItemDetails) =>
-            y.name.toLowerCase().includes(searchTerm),
-          ) || x.category.toLowerCase().includes(searchTerm),
+            y.name.toLowerCase().includes(searchItems),
+          ) || x.category.toLowerCase().includes(searchItems),
       ),
     );
-  }, [searchTerm, filteredData]);
+  }, [searchItems, filteredData]);
 
   const placeOrder = (
     customerDetails: DetailsType,
@@ -110,7 +110,7 @@ export function OrderProvider({ children }: orderProps) {
   };
 
   //handle the search query
-  const setSearchInput = (input: string) => setSearchTerm(input.toLowerCase());
+  const handleSearch = (input: string) => setSearchItems(input.toLowerCase());
 
   //handle delivery change
   const updateDelivery = (amount: number) => setDelivery(amount);
@@ -171,8 +171,8 @@ export function OrderProvider({ children }: orderProps) {
     fetchedCategories: fetchedCategories,
     addItem: addItem,
     deleteItem: deleteItem,
-    searchTerm: searchTerm,
-    setSearchInput: setSearchInput,
+    searchItems: searchItems,
+    handleSearch: handleSearch,
     totalAmount: totalAmount,
     selected: selected,
     placeOrder: placeOrder,
@@ -196,8 +196,8 @@ interface value {
   fetchedCategories: ItemFetch[];
   addItem: (_id: string) => void;
   deleteItem: (_id: string) => void;
-  searchTerm: string;
-  setSearchInput: (input: string) => void;
+  searchItems: string;
+  handleSearch: (input: string) => void;
   totalAmount: number;
   selected: { item: ItemDetails; amount: number }[];
   placeOrder: (

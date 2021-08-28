@@ -7,12 +7,12 @@ import Searchbar from '../components/Searchbar';
 
 
 function Delivery() {
-  const { ordersData } = useDelivery()
+  const { ordersData, deliverySearch, handleSearch } = useDelivery()
 
   return (
     <div className="delivery">
       <div className="upper-container">
-        <Searchbar/>
+        <Searchbar searchTerm={deliverySearch} handleSearch={handleSearch}/>
       </div>
       <div className="lower-container">
       {Object.entries(ordersData).map((x: [status: string, orders: Order[]]) => {
