@@ -1,99 +1,102 @@
 .ordercard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
-    /* sizing */
-    width: 175px;
-    height: 80px;
+  /* sizing */
+  width: 175px;
+  height: 80px;
 
-    /* border */
-    border-style: solid;
-    border-color: var(--bordergrey);
-    border-width: 1px;
-    border-radius: 15px;
+  /* border */
+  border-style: solid;
+  border-color: var(--bordergrey);
+  border-width: 1px;
+  border-radius: 15px;
 
-    font-size: x-small;
+  font-size: x-small;
 
-    margin: 10px 10px 10px 0;
+  margin: 10px 10px 10px 0;
 
-    /* shadow */
-    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
+  /* shadow */
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
 }
 
 .courier-box {
-    display: flex;
-    flex-direction: row;
-    justify-items: space-between;
-    /* text-overflow: ellipsis; */
-    /* white-space: nowrap; */
-    overflow: hidden;
-    max-width: 53px;
-    max-height: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  /* text-overflow: ellipsis; */
+  /* white-space: nowrap; */
+  overflow: hidden;
+  max-width: 53px;
+  max-height: 12px;
 }
 
 .distance-box {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .cart-box {
-    display: flex;
-    flex-direction: row;
-    /* justify-items: center; */
+  display: flex;
+  flex-direction: row;
 }
 
 .text-box {
-    width: 55px;
-    overflow: hidden;
-    border-color: firebrick;
+  width: 55px;
+  overflow: hidden;
 }
 
 .courier {
-    white-space: nowrap;
-    transform: translateX(0);
-    transition: 1s;
-  }
+  white-space: nowrap;
+  transform: translateX(0);
+  transition: 1s;
+}
 
 .courier:hover {
-    transform: translateX(calc(2em - 60px));
-  }
+  transform: translateX(calc(2em - 60px));
+}
 
 .upper {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .upper-left {
-    display: flex;
-    flex-direction: column;
-}
-
-.upper-right {
-    width: 32px;
+  display: flex;
+  flex-direction: column;
 }
 
 .upper-right > img {
-    margin: 3px 0 0 0;
+  margin: 3px 0 0 0;
 }
 
 .upper-middle {
-    max-width: 62px;
+  display: inline;
+  font-size: smaller;
+  width: 75px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+li {
+  text-overflow: ellipsis;
+  list-style-type: none;
 }
 
 .lower {
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .time {
-    font-size: large;
-    font-weight: 900;
-    color: var(--primary);
+  font-size: large;
+  font-weight: 900;
+  color: var(--primary);
 }
 
 hr {
-    border: none;
-    border-top: 1px solid var(--bordergrey);
+  border: none;
+  border-top: 1px solid var(--bordergrey);
 }

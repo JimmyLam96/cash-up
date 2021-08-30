@@ -12,7 +12,7 @@
   border-radius: 10px;
   border-color: lightgray;
 
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
   transition: width 0.3s ease;
 
   /* shadow */
@@ -28,7 +28,7 @@
 }
 
 .head-text {
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
   font-size: 20px;
 }
 
@@ -43,7 +43,7 @@
 
 .button-type {
   /* fonts */
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
   font-size: 20px;
   text-decoration: none;
 
@@ -71,12 +71,6 @@
   flex-direction: row;
 }
 
-span {
-  transition: 300ms all ease;
-  opacity: 0;
-  will-change: opacity;
-}
-
 .checkout {
   height: 35px;
   width: 155px;
@@ -84,7 +78,7 @@ span {
 
   border-radius: 16px;
 
-  font-family: "Quicksand";
+  font-family: 'Quicksand';
   font-size: 16px;
   color: white;
 }
