@@ -5,25 +5,9 @@ import edit from '../images/edit.svg';
 import biker from '../images/biker.svg';
 import distance from '../images/distance.svg';
 import cart from '../images/cart.svg';
-import { useTextWidth } from '@tag0/use-text-width';
 
 export default function OrderCard({ details }: OProps) {
-  const shortenAddress = (input: string) => {
-    return (
-      input.slice(0, 10) + ' ... ' + input.slice(input.length - 6, input.length)
-    );
-  };
-
-  const address = details.address;
-  //shorten the address if its larger than surrounding div
-  const displayAddress =
-    useTextWidth({
-      text: address,
-      font: '8.33px Lato',
-    }) < 75
-      ? address
-      : shortenAddress(address);
-
+  //temporary delivery names
   const names = [
     'Jimmy Lam',
     'Johannes van der Laan',
@@ -39,25 +23,31 @@ export default function OrderCard({ details }: OProps) {
           <b className="time">18</b>
           <b className="time">30</b>
         </div>
-        <ul className="upper-middle">
-          <li>{displayAddress}</li>
-          <li>
-            {'nr. ' +
-              details.houseNumber[0] +
-              (details.houseNumber[1] && '-' + details.houseNumber[1]) +
-              ' / ' +
-              details.postalCode[0] +
-              details.postalCode[1]}
-          </li>
-          {/* <li>{}</li> */}
-        </ul>
+        <div className="upper-middle">
+          <div>
+            <span>{details.address}</span>
+          </div>
+          <div>
+            <span>
+              {'nr. ' +
+                details.houseNumber[0] +
+                (details.houseNumber[1] && '-' + details.houseNumber[1]) +
+                ' / ' +
+                details.postalCode[0] +
+                details.postalCode[1]}
+            </span>
+          </div>
+        </div>
         <div className="upper-right">
+          <div className="circle" style={{ marginRight: '3px' }}>
+            <p className="order-number">{Math.floor(Math.random() * 200)}</p>
+          </div>
           <img
             width="15px"
             height="15px"
             src={edit}
             alt={'edit'}
-            style={{ marginRight: '2px' }}
+            // style={{ marginRight: '2px' }}
           />
         </div>
       </div>

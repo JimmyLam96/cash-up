@@ -13,7 +13,7 @@
   border-width: 1px;
   border-radius: 15px;
 
-  font-size: x-small;
+  font-size: 10px;
 
   margin: 10px 10px 10px 0;
 
@@ -25,8 +25,6 @@
   display: flex;
   flex-direction: row;
   justify-items: space-between;
-  /* text-overflow: ellipsis; */
-  /* white-space: nowrap; */
   overflow: hidden;
   max-width: 53px;
   max-height: 12px;
@@ -57,6 +55,24 @@
   transform: translateX(calc(2em - 60px));
 }
 
+.circle {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 50%;
+  width: 15px;
+  height: 14.8px;
+  background: var(--primary);
+  color: white;
+}
+
+.order-number {
+  font-family: 'Quicksand';
+  font-size: 7px;
+  text-align: center;
+}
+
 .upper {
   display: flex;
   justify-content: space-evenly;
@@ -67,21 +83,22 @@
   flex-direction: column;
 }
 
-.upper-right > img {
-  margin: 3px 0 0 0;
+.upper-right {
+  display: flex;
+  flex-direction: row;
 }
 
 .upper-middle {
   display: inline;
-  font-size: smaller;
   width: 75px;
   overflow: hidden;
   white-space: nowrap;
 }
 
-li {
+.upper-middle > div {
   text-overflow: ellipsis;
-  list-style-type: none;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .lower {
