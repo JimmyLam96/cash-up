@@ -29,6 +29,11 @@ export function DeliveryProvider({ children }: DProps) {
         COMPLETED: [] as Order[],
       };
 
+      const temp = axios.get(
+        `http://localhost:4000/customers/613215ed355114440db2e39a`,
+      );
+      console.log(temp);
+
       x.data.forEach((x: Order) => {
         switch (x.status) {
           case 'NEW':

@@ -21,7 +21,7 @@ export class OrdersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id): Promise<Order> {
+  findOne(@Param('id') id: string): Promise<Order> {
     return this.ordersService.findOne(id);
   }
 
@@ -36,7 +36,10 @@ export class OrdersController {
   }
 
   @Put(':id')
-  update(@Body() updateOrderDto: CreateOrderDto, @Param('id') id: string): Promise<Order> {
+  update(
+    @Body() updateOrderDto: CreateOrderDto,
+    @Param('id') id: string,
+  ): Promise<Order> {
     return this.ordersService.update(id, updateOrderDto);
   }
 }

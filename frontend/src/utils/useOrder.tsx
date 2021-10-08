@@ -36,6 +36,12 @@ export function OrderProvider({ children }: orderProps) {
 
   //fetch on the intial mount all the fetchedCategories from the server
   useEffect(() => {
+    const temp = axios.get(
+      `http://localhost:4000/customers/613215ed355114440db2e39a/getAllOrders`,
+    );
+    temp.then((x: any) => {
+      console.log(x);
+    });
     const getfetchedCategories = axios.get(`http://localhost:4000/items`);
     getfetchedCategories.then((x: AxiosResponse<ItemFetch[]>) => {
       setfetchedCategories(x.data);
