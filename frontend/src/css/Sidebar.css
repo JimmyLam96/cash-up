@@ -1,0 +1,19 @@
+.sidebar-container {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* look and size */
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  max-width: 25vh;
+  /* color */
+  background-color: var(--primary);
+}
+
+.sidebar-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

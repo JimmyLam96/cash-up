@@ -1,0 +1,52 @@
+.btn {
+  /* background-color: aqua; */
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  /* look and size */
+  border-radius: 8px;
+  height: 35px;
+  width: 85%;
+  border: none;
+  /* others */
+  cursor: pointer;
+  /*top - left - bottom - right*/
+  margin: 10px 0px 10px 0px;
+  transition: transform 0.3s ease;
+}
+
+.btn--content {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  /* fonts */
+  font-family: "Quicksand";
+  font-weight: 400;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Button variants*/
+.btn--default {
+  background-color: var(--primary);
+}
+
+.btn--content--default {
+  color: white;
+}
+
+.btn--clicked {
+  background-color: white;
+  font-size: 17px;
+  color: var(--primary);
+}
+
+.btn--content--clicked {
+  color: var(--primary);
+}

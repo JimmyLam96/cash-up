@@ -1,0 +1,34 @@
+.cashier {
+  /* flexbox */
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+
+  /* margin & padding */
+  padding: 4vh;
+}
+
+.left {
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0.8;
+  padding: 10px;
+}
+
+.left > div {
+  margin: 0px 0 10px 0;
+}
+
+.right {
+  flex: 0.2;
+}
+
+.category-container {
+  padding: 10px 0 10px 0;
+}
+
+h1 {
+  font-size: 14px;
+  color: #4d4d4d;
+  font-family: "Quicksand";
+}

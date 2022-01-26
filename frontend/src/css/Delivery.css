@@ -1,0 +1,19 @@
+.delivery {
+    display: flex;
+    flex-direction: column;
+
+    /* margin & padding */
+    padding: 4vh;
+
+    flex: 1;
+}
+
+.delivery > div {
+    padding: 10px
+}
+
+.order-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
