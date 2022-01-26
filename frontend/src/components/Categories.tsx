@@ -7,7 +7,7 @@ export default function Categories() {
     <div>
       {fetchedCategories.map((x) => {
         return (
-          <button onClick={() => sortCategories(x.category)}>
+          <button key={x._id} onClick={() => sortCategories(x.category)}>
             {x.category}
           </button>
         );

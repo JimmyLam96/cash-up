@@ -47,3 +47,10 @@ export interface OrderEntry {
   _id: string;
   orders: [Order]
 }
+
+export enum OrderStatus {
+  STATUS_NEW = 'NEW',
+  STATUS_PROCESSING = 'PROCESSING',
+  STATUS_DELIVERY = 'DELIVERY',
+  STATUS_COMPLETED = 'COMPLETED',
+}

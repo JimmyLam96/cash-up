@@ -17,8 +17,8 @@ export function useOrder() {
 export function OrderProvider({ children }: orderProps) {
   const [items, setItems] = useState<ItemDetails[]>([]);
   const [fetchedCategories, setfetchedCategories] = useState<ItemFetch[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [filteredData, setFilteredData] = useState([]);
+  const [searchItems, setSearchItems] = useState<string>('');
+  const [filteredData, setFilteredData] = useState<ItemFetch[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [selected, setSelected] = useState<
     { item: ItemDetails; amount: number }[]
@@ -26,10 +26,18 @@ export function OrderProvider({ children }: orderProps) {
   const [delivery, setDelivery] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  //enum for the status of each order
+  enum OrderStatus {
+    STATUS_NEW = 'NEW',
+    STATUS_PROCESSING = 'PROCESSING',
+    STATUS_DELIVERY = 'DELIVERY',
+    STATUS_COMPLETED = 'COMPLETED',
+  }
+
   //fetch on the intial mount all the fetchedCategories from the server
   useEffect(() => {
     const getfetchedCategories = axios.get(`http://localhost:4000/items`);
-    getfetchedCategories.then((x: AxiosResponse<any>) => {
+    getfetchedCategories.then((x: AxiosResponse<ItemFetch[]>) => {
       setfetchedCategories(x.data);
       setFilteredData(x.data);
 
@@ -41,15 +49,17 @@ export function OrderProvider({ children }: orderProps) {
     });
   }, []);
 
-  //on changes to the searchTerm filter out the dishes (search functionality)
+  //on changes to the searchItems filter out the dishes (search functionality)
   useEffect(() => {
-    const results = filteredData.filter(
-      (x: any) =>
-        x.dishes.some((y: any) => y.name.toLowerCase().includes(searchTerm)) ||
-        x.category.toLowerCase().includes(searchTerm),
+    setfetchedCategories(
+      filteredData.filter(
+        (x: ItemFetch) =>
+          x.dishes.some((y: ItemDetails) =>
+            y.name.toLowerCase().includes(searchItems),
+          ) || x.category.toLowerCase().includes(searchItems),
+      ),
     );
-    setfetchedCategories(results);
-  }, [searchTerm]);
+  }, [searchItems, filteredData]);
 
   const placeOrder = (
     customerDetails: DetailsType,
@@ -100,7 +110,7 @@ export function OrderProvider({ children }: orderProps) {
   };
 
   //handle the search query
-  const setSearchInput = (input: string) => setSearchTerm(input.toLowerCase());
+  const handleSearch = (input: string) => setSearchItems(input.toLowerCase());
 
   //handle delivery change
   const updateDelivery = (amount: number) => setDelivery(amount);
@@ -108,7 +118,7 @@ export function OrderProvider({ children }: orderProps) {
   const addItem = (_id: string) => {
     //check if the list of selected items contains the to be added item
     //we add the XOR such that item will evaluate to undefined and not throw an error for the check on line 77
-    const { item, amount } =
+    const { item } =
       selected.filter(
         (x: { item: ItemDetails; amount: number }) => x.item._id === _id,
       )[0] || {};
@@ -161,8 +171,8 @@ export function OrderProvider({ children }: orderProps) {
     fetchedCategories: fetchedCategories,
     addItem: addItem,
     deleteItem: deleteItem,
-    searchTerm: searchTerm,
-    setSearchInput: setSearchInput,
+    searchItems: searchItems,
+    handleSearch: handleSearch,
     totalAmount: totalAmount,
     selected: selected,
     placeOrder: placeOrder,
@@ -186,8 +196,8 @@ interface value {
   fetchedCategories: ItemFetch[];
   addItem: (_id: string) => void;
   deleteItem: (_id: string) => void;
-  searchTerm: string;
-  setSearchInput: (input: string) => void;
+  searchItems: string;
+  handleSearch: (input: string) => void;
   totalAmount: number;
   selected: { item: ItemDetails; amount: number }[];
   placeOrder: (
@@ -197,12 +207,4 @@ interface value {
   delivery: number;
   updateDelivery: (amount: number) => void;
   sortCategories: (category: string) => void;
-}
-
-//enum for the status of each order
-enum OrderStatus {
-  STATUS_NEW = 'NEW',
-  STATUS_PROCESSING = 'PROCESSING',
-  STATUS_DELIVERY = 'DELIVERY',
-  STATUS_COMPLETED = 'COMPLETED',
 }

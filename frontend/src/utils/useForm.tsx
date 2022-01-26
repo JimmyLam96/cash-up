@@ -19,7 +19,7 @@ export function FormProvider({ children }: formProps) {
     if (Object.keys(state).length < 8) {
       setErrors((prevState) => ({
         ...prevState,
-        ['Empty fields error']: 'Some fields are still empty',
+        'Empty fields error': 'Some fields are still empty',
       }));
       return false;
     }
@@ -28,7 +28,7 @@ export function FormProvider({ children }: formProps) {
       if (x[1] === '') {
         setErrors((prevState) => ({
           ...prevState,
-          ['Empty fields error']: 'Some fields are still empty',
+          'Empty fields error': 'Some fields are still empty',
         }));
         return false;
       }
@@ -44,7 +44,11 @@ export function FormProvider({ children }: formProps) {
   //verifies if users put in the correct values for each field
   function handleChange(e: any) {
     //start with a clean slate when input is filled in
-    setErrors({});
+    setErrors((prevState) =>
+      Object.fromEntries(
+        Object.entries(prevState).filter((x) => x[0] !== 'Empty fields error'),
+      ),
+    );
 
     let regex = undefined;
 

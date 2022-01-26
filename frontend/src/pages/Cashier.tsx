@@ -7,23 +7,24 @@ import '../css/Cashier.css';
 import SummaryItem from '../components/SummaryItem';
 import { FormProvider } from '../utils/useForm';
 import { useOrder } from '../utils/useOrder';
-import { Item } from '../../../backend/src/items/interfaces/item.interface';
 import Categories from '../components/Categories';
 
 function Cashier() {
-  const { items, fetchedCategories, selected } = useOrder();
+  const { fetchedCategories, selected, handleSearch, searchItems } = useOrder();
 
   return (
     <div className="cashier">
       <div className="left">
         <div className="searchbar-container">
-          <Searchbar />
+          <Searchbar searchTerm={searchItems} handleSearch={handleSearch} />
         </div>
-        <Categories />
+        <div className="categories-container">
+          <Categories />
+        </div>
         <div className="itemcards-container">
           {fetchedCategories.map((x: ItemFetch) => {
             return (
-              <div className="category-container">
+              <div key={x._id} className="category-container">
                 <h1>{x.category}</h1>
                 {x.dishes.map((dish: ItemDetails) => {
                   return <Itemcard key={dish._id} details={dish} />;
