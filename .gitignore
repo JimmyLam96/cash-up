@@ -1,11 +1,11 @@
 # backend compiled output
-/backend/dist
-/backend/node_modules
+/backend-OLD/dist
+/backend-OLD/node_modules
 # frontend compiled output
 /frontend/node_modules
 
 # Logs
-/backend/logs
+/backend-OLD/logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -16,8 +16,8 @@ lerna-debug.log*
 .DS_Store
 
 # Tests
-/backend/coverage
-/backend/.nyc_output
+/backend-OLD/coverage
+/backend-OLD/.nyc_output
 
 # IDEs and editors
 /.idea
@@ -35,8 +35,8 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-backend/src/config/keys.ts
-backend/package-lock.json
+backend-OLD/src/config/keys.ts
+backend-OLD/package-lock.json
 frontend/package-lock.json
 
 .vscode
