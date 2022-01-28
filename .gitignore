@@ -1,6 +1,7 @@
 # backend compiled output
 /backend-OLD/dist
 /backend-OLD/node_modules
+__pycache__/
 # frontend compiled output
 /frontend/node_modules
 
