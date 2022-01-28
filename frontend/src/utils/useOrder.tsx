@@ -36,12 +36,6 @@ export function OrderProvider({ children }: orderProps) {
 
   //fetch on the intial mount all the fetchedCategories from the server
   useEffect(() => {
-    const temp = axios.get(
-      `http://localhost:4000/customers/613215ed355114440db2e39a/getAllOrders`,
-    );
-    temp.then((x: any) => {
-      console.log(x);
-    });
     const getfetchedCategories = axios.get(`http://localhost:4000/items`);
     getfetchedCategories.then((x: AxiosResponse<ItemFetch[]>) => {
       setfetchedCategories(x.data);
@@ -75,6 +69,7 @@ export function OrderProvider({ children }: orderProps) {
       setLoading(true);
       if (delivery > 0 && validateForm()) {
         const order: Order = {
+          customerId: '6148afce8564a9ac22ad2fe4',
           platform: 'cash-up',
           status: OrderStatus.STATUS_NEW,
           address: customerDetails.address,

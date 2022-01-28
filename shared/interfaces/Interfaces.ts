@@ -10,7 +10,7 @@ export interface Order {
 }
 
 export interface Customer {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
   email?: string;
@@ -18,9 +18,8 @@ export interface Customer {
   address: string;
   houseNumber: [number, string];
   postal: [number, string];
-  orders: string[]
+  orders: string[];
 }
-
 
 export interface ItemType {
   [key: string]: {

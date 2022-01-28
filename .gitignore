@@ -38,3 +38,5 @@ lerna-debug.log*
 backend/src/config/keys.ts
 backend/package-lock.json
 frontend/package-lock.json
+
+.vscode

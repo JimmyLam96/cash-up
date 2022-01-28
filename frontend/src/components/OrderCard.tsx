@@ -1,12 +1,20 @@
-import React from 'react';
-import { Order } from '../../../shared/interfaces/Interfaces';
+import React, { useEffect, useState } from 'react';
+import { Customer, Order } from '../../../shared/interfaces/Interfaces';
 import '../css/OrderCard.css';
 import edit from '../images/edit.svg';
 import biker from '../images/biker.svg';
 import distance from '../images/distance.svg';
 import cart from '../images/cart.svg';
+import { fetch, URLPaths } from '../utils/defaultCRUD';
+import { AxiosResponse } from 'axios';
 
-export default function OrderCard({ details }: OProps) {
+interface OProps {
+  order: Order;
+  customer: Customer | undefined;
+}
+
+export default function OrderCard({ order, customer }: OProps) {
+  // const [customer, setCustomer] = useState<Customer>({} as Customer);
   //temporary delivery names
   const names = [
     'Jimmy Lam',
@@ -15,6 +23,18 @@ export default function OrderCard({ details }: OProps) {
     'Omar Kruiff',
     'Tess He',
   ];
+
+  // useEffect(() => {
+  //   if (order.customerId) {
+  //     // let c;
+  //     const res = async () => {
+  //       return await fetch(URLPaths.CUSTOMER + order.customerId);
+  //     };
+  //     const c = res();
+  //     setCustomer(c);
+  //   }
+  // }, []);
+  // console.log(customer);
 
   return (
     <div className={'ordercard'}>
@@ -25,16 +45,17 @@ export default function OrderCard({ details }: OProps) {
         </div>
         <div className="upper-middle">
           <div>
-            <span>{details.address}</span>
+            <h1>{customer ? customer.firstName : order.platform}</h1>
+            <span>{order.address}</span>
           </div>
           <div>
             <span>
               {'nr. ' +
-                details.houseNumber[0] +
-                (details.houseNumber[1] && '-' + details.houseNumber[1]) +
+                order.houseNumber[0] +
+                (order.houseNumber[1] && '-' + order.houseNumber[1]) +
                 ' / ' +
-                details.postalCode[0] +
-                details.postalCode[1]}
+                order.postalCode[0] +
+                order.postalCode[1]}
             </span>
           </div>
         </div>
@@ -78,7 +99,7 @@ export default function OrderCard({ details }: OProps) {
           <p>12KM</p>
         </div>
         <div className="cart-box">
-          <p>{details.items.length}</p>
+          <p>{order.items.length}</p>
           <img
             width="10px"
             height="10px"
@@ -91,8 +112,4 @@ export default function OrderCard({ details }: OProps) {
       </div>
     </div>
   );
-}
-
-interface OProps {
-  details: Order;
 }
