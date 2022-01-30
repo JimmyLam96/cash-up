@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'playground',
-    'debug_toolbar'
+    'playground', 
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'Finnies.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cashupdb',
+        'USER': 'postgres',
+        'PASSWORD': 'Sqlb00m123',
+        'HOST': '127.0.0.1',
+        'PORT': '5433'
     }
 }
 
