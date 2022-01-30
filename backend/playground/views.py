@@ -6,7 +6,8 @@ from playground.models import User, Customer
 def say_hello(request):
     x = 1
     y = 2
-    return render(request, 'hello.html', {'name': 'jimmy'})
+    return render(request, "hello.html", {"name": "jimmy"})
+
 
 def Customers(request):
     return render(request, "customers.html")
