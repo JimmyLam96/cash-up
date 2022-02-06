@@ -2,6 +2,7 @@
 /backend-OLD/dist
 /backend-OLD/node_modules
 __pycache__
+migrations
 # frontend compiled output
 /frontend/node_modules
 
