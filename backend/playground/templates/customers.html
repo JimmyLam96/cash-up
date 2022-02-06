@@ -1,33 +1,51 @@
-<!DOCTYPE html>
+<!-- {% load static %}
+
+<!doctype html>
+<html lang="en">
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-with, inital-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Contacts</title>
-    >
+    <head>
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    />
-  </head>
-  <body class="bg-light">
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-md-8.offset-md-2">
-          <div class="card">
-            <div class="card-header.shadow-sm.bg-white">
-              <h1 class="display-5 text-info">
-                <i class="fas.fa-check-double"></i> Customers
-              </h1>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-with, inital-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Contacts</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'playground/stles.css' %}">
+
+    </head>
+    <body class="bg-light">
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-8.offset-md-2">
+                    
+                    <div class="card">
+                        <div class="card-header.shadow-sm.bg-white">
+                            <h1 class="display-5 text-info"><i class="fas.fa-check-double"></i> Customers</h1>
+                        </div>
+                        <div class="card-body">
+                            <form action="{% url 'insert_customer_item' %}" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="content">
+                                    <div class="input-group-append text-info">
+                                        <span class="input-group-text bg-white py-0">
+                                            <button type="submit" class="btn btn-sm text-info">
+                                                <i class="fa fa-plus-circle fa-lg"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="card-body"></div>
           </div>
@@ -51,4 +69,4 @@
       crossorigin="anonymous"
     ></script>
   </body>
-</html>
+</html> -->
