@@ -18,3 +18,11 @@ class Customer(models.Model):
     email = models.TextField(default="DEFAULT")
     email_verified = models.BooleanField(default=None)
     address = models.TextField(default="DEFAULT")
+
+class Product(models.Model):
+    name = models.TextField(default="DEFAULT")
+    price = models.DecimalField(max_digits=5, decimal_places=2, default="DEFAULT")
+    description = models.TextField(default="DEFAULT")
+    tax_percentage = models.IntegerField(default="DEFAULT")
+    category = models.TextField(default="DEFAULT")
+    in_stock = models.BooleanField(default="DEFAULT")
