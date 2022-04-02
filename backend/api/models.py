@@ -19,6 +19,7 @@ class Customer(models.Model):
     email_verified = models.BooleanField(default=None)
     address = models.TextField(default="DEFAULT")
 
+
 class Product(models.Model):
     name = models.TextField(default="DEFAULT")
     price = models.DecimalField(max_digits=5, decimal_places=2, default="DEFAULT")

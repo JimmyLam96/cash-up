@@ -1,9 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import backend_config from "../config/backend_config.json";
+import useCurrentUser from "../contexts/UserContext";
 
 function SignIn() {
   const [username, setUsername] = useState<string>("");
-  const handleSignin = () => {
-    console.log(username);
+  const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
+  const { accessToken, setAccessToken, setRefreshToken } = useCurrentUser();
+
+  const handleSignin = async () => {
+    const response = await fetch(`${backend_config.backend_uri}/api/token/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: username, password: password }),
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      setAccessToken(data.access);
+      setRefreshToken(data.refresh);
+      navigate("/");
+    }
   };
 
   return (
@@ -24,9 +44,13 @@ function SignIn() {
             type="password"
             placeholder="password"
             className="w-full text-center appearance-none"
+            value={password}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
           <div className="flex gap-4 justify-center">
-            <button type="submit" onClick={handleSignin}>
+            <button type="button" onClick={handleSignin}>
               Sign in
             </button>
             <button type="button">Cancel</button>
