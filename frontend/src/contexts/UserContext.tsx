@@ -14,8 +14,10 @@ export function UserProvider({ children }: props) {
   const [user, setUser] = useState();
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const values = {
+    loggedIn,
     user,
     setUser,
     accessToken,
