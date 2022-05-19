@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import backend_config from "../config/backend_config.json";
 import useCurrentUser from "../contexts/UserContext";
@@ -52,7 +52,10 @@ function SignIn() {
   };
 
   return (
-    <body className="bg-teal-200 flex justify-center items-center h-full">
+    <div
+      // id="background"
+      className="bg-teal-200 flex justify-center items-center h-full"
+    >
       <div className="bg-white p-5 m-3  w-full max-w-2xl h-2/4 rounded-md">
         <form className="appearance-none flex flex-col gap-8 justify-center items-center">
           <label>Sign in</label>
@@ -108,7 +111,7 @@ function SignIn() {
           </div>
         </form>
       </div>
-    </body>
+    </div>
   );
 }
 

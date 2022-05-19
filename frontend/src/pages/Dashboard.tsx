@@ -5,6 +5,7 @@ import backend_config from "../config/backend_config.json";
 function Dashboard() {
   const { accessToken } = useCurrentUser();
   const [data, setData] = useState();
+
   const handleClick = async () => {
     const response = await fetch(`${backend_config.backend_uri}/customers/1/`, {
       method: "GET",
