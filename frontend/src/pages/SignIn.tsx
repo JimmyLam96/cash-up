@@ -4,6 +4,7 @@ import backend_config from "../config/backend_config.json";
 import useCurrentUser from "../contexts/UserContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import TextInput from "../components/inputs/TextInput";
+import axios, { AxiosError } from "axios";
 
 function SignIn() {
   const [username, setUsername] = useState<string>("");
@@ -17,7 +18,9 @@ function SignIn() {
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
-  const { accessToken, setAccessToken, setRefreshToken } = useCurrentUser();
+  const { accessToken, setLoggedIn, setAccessToken, setRefreshToken } =
+    useCurrentUser();
+  const [stayLoggedIn, setStayLoggedIn] = useState(false);
 
   const validateFields = () => {
     let errors: { username: string | undefined; password: string | undefined } =
@@ -31,29 +34,28 @@ function SignIn() {
   };
 
   const handleSignin = async () => {
+    console.log("signing in");
     if (!validateFields()) return;
-
-    const response = await fetch(`${backend_config.backend_uri}/api/token/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    });
-    const data = await response.json();
-
-    if (response.ok) {
-      setAccessToken(data.access);
-      setRefreshToken(data.refresh);
+    try {
+      const response = await axios.post(
+        `${backend_config.backend_uri}/login/`,
+        {
+          username,
+          password,
+        },
+        { withCredentials: true }
+      );
+      setLoggedIn(true);
+      console.log(response);
       navigate("/");
-    } else {
-      setErrorMessage(data.detail);
+    } catch (error: any) {
+      setErrorMessage(error.response.data.detail);
     }
   };
 
   return (
     <div
-      // id="background"
+      id="background"
       className="bg-teal-200 flex justify-center items-center h-full"
     >
       <div className="bg-white p-5 m-3  w-full max-w-2xl h-2/4 rounded-md">
