@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backend_config from "config/backend_config.json";
 import useCurrentUser from "contexts/UserContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import TextInput from "components/inputs/TextInput";
 import axios, { AxiosError } from "axios";
 import Button from "components/butttons/Button";
+import Form from "components/form/Form";
 
 function SignIn() {
   const [username, setUsername] = useState<string>("");
@@ -54,57 +55,61 @@ function SignIn() {
   };
 
   return (
-    <div
-      id="background"
-      className="bg-teal-200 flex justify-center items-center h-full"
-    >
-      <div className="bg-white p-5 m-3  w-full max-w-2xl h-2/4 rounded-md">
-        <form className="appearance-none flex flex-col gap-8 justify-center items-center">
-          <label>Sign in</label>
-          <TextInput
-            type="text"
-            placeholder="username"
-            className={
-              "w-full max-w-xs text-center rounded-md" +
-              (errors.username ? " border-red-500 border-2" : "")
-            }
-            value={username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              errors.username &&
-                setErrors((prev) => ({ ...prev, username: undefined }));
-              errorMessage !== "" && setErrorMessage("");
-              setUsername(e.target.value);
-            }}
-            error={errors.username}
-          />
-          <TextInput
-            type="password"
-            placeholder="password"
-            className={
-              "w-full max-w-xs text-center rounded-md" +
-              (errors.password ? " border-red-500 border-2" : "")
-            }
-            value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              errors.password &&
-                setErrors((prev) => ({ ...prev, password: undefined }));
-              errorMessage !== "" && setErrorMessage("");
-              setPassword(e.target.value);
-            }}
-            error={errors.password}
-          />
-          {errorMessage && (
-            <div className="flex gap-2 items-center w-full max-w-xs">
-              <AiOutlineExclamationCircle style={{ fill: "red" }} />
-              <p className="text-red-500 text-xs">{errorMessage}</p>
-            </div>
-          )}
-          <div className="flex gap-4 justify-center">
-            <Button onClick={handleSignin}>Sign in</Button>
-            <Button>Cancel</Button>
+    <div id="background" className=" flex justify-center items-center h-full">
+      <Form>
+        <label>Sign in</label>
+        <TextInput
+          type="text"
+          placeholder="username"
+          className={
+            "w-full max-w-xs text-center rounded-md" +
+            (errors.username ? " border-red-500 border-2" : "")
+          }
+          value={username}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            errors.username &&
+              setErrors((prev) => ({ ...prev, username: undefined }));
+            errorMessage !== "" && setErrorMessage("");
+            setUsername(e.target.value);
+          }}
+          error={errors.username}
+        />
+        <TextInput
+          type="password"
+          placeholder="password"
+          className={
+            "w-full max-w-xs text-center rounded-md" +
+            (errors.password ? " border-red-500 border-2" : "")
+          }
+          value={password}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            errors.password &&
+              setErrors((prev) => ({ ...prev, password: undefined }));
+            errorMessage !== "" && setErrorMessage("");
+            setPassword(e.target.value);
+          }}
+          error={errors.password}
+        />
+        {errorMessage && (
+          <div className="flex gap-2 items-center w-full max-w-xs">
+            <AiOutlineExclamationCircle style={{ fill: "red" }} />
+            <p className="text-red-500 text-xs">{errorMessage}</p>
           </div>
-        </form>
-      </div>
+        )}
+        <p>
+          No account yet?{" "}
+          <Link
+            to="/signup"
+            className="text-secondary-orange hover:border-b-2 hover:border-secondary-orange"
+          >
+            Sign up
+          </Link>
+        </p>
+        <div className="flex gap-4 justify-center">
+          <Button onClick={handleSignin}>Sign in</Button>
+          <Button>Cancel</Button>
+        </div>
+      </Form>
     </div>
   );
 }

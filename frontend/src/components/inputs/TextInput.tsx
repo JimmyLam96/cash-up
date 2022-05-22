@@ -1,10 +1,27 @@
-import React from "react";
+import React, { FC } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
-function TextInput({ error, ...rest }: any) {
+type props = {
+  error: string | undefined;
+  className?: string;
+  [key: string]: any;
+};
+
+const TextInput: FC<props> = ({ error, className, ...rest }: props) => {
   return (
     <div className="flex gap-3 flex-col w-full items-center">
-      <input {...rest} />
+      <input
+        className={`
+        p-2 
+        rounded-md 
+        transition ease-in-out 
+        border-2 
+        border-transparent
+        focus:text-gray-700 focus:border-secondary-orange focus:outline-none  
+        ${className}
+        `}
+        {...rest}
+      />
       {error && (
         <div className="flex gap-3">
           <AiOutlineExclamationCircle className="fill-red-500" />
@@ -13,6 +30,6 @@ function TextInput({ error, ...rest }: any) {
       )}
     </div>
   );
-}
+};
 
 export default TextInput;

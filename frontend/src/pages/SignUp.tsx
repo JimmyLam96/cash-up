@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import Form from "components/form/Form";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -59,8 +60,8 @@ function SignUp() {
   };
 
   return (
-    <div id="background" className="flex items-center w-full justify-center">
-      <form className="appearance-none flex flex-col gap-8 justify-center items-center">
+    <div id="background" className="flex items-center w-full justify-center ">
+      <Form>
         <label>Sign up</label>
         <TextInput
           type="text"
@@ -86,7 +87,7 @@ function SignUp() {
         />
         <TextInput
           type="password"
-          placeholder="password"
+          placeholder="confirm password"
           value={rePassword}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             // errors.rePassword &&
@@ -95,9 +96,11 @@ function SignUp() {
           }}
           error={errors.rePassword}
         />
-        <Button onClick={handleSignUp}>Submit</Button>
-        <Button>Cancel</Button>
-      </form>
+        <div className="flex gap-3">
+          <Button onClick={handleSignUp}>Submit</Button>
+          <Button>Cancel</Button>
+        </div>
+      </Form>
     </div>
   );
 }
