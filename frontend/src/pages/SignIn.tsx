@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backend_config from "../config/backend_config.json";
-import useCurrentUser from "../contexts/UserContext";
+import backend_config from "config/backend_config.json";
+import useCurrentUser from "contexts/UserContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import TextInput from "../components/inputs/TextInput";
+import TextInput from "components/inputs/TextInput";
 import axios, { AxiosError } from "axios";
+import Button from "components/butttons/Button";
 
 function SignIn() {
   const [username, setUsername] = useState<string>("");
@@ -34,7 +35,6 @@ function SignIn() {
   };
 
   const handleSignin = async () => {
-    console.log("signing in");
     if (!validateFields()) return;
     try {
       const response = await axios.post(
@@ -100,16 +100,8 @@ function SignIn() {
             </div>
           )}
           <div className="flex gap-4 justify-center">
-            <button
-              type="button"
-              className="bg-teal-200 p-2 rounded-md"
-              onClick={handleSignin}
-            >
-              Sign in
-            </button>
-            <button type="button" className="bg-teal-200 p-2 rounded-md">
-              Cancel
-            </button>
+            <Button onClick={handleSignin}>Sign in</Button>
+            <Button>Cancel</Button>
           </div>
         </form>
       </div>
