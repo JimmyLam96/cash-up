@@ -13,7 +13,6 @@ function Dashboard() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      //   mode: "cors",
     });
     const data = await response.json();
     console.log(data);

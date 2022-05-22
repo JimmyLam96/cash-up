@@ -12,6 +12,7 @@ const TextInput: FC<props> = ({ error, className, ...rest }: props) => {
     <div className="flex gap-3 flex-col w-full items-center">
       <input
         className={`
+        w-full max-w-xs text-center
         p-2 
         rounded-md 
         transition ease-in-out 

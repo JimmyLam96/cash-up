@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import backend_config from "config/backend_config.json";
 import useCurrentUser from "contexts/UserContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import TextInput from "components/inputs/TextInput";
-import axios, { AxiosError } from "axios";
 import Button from "components/butttons/Button";
 import Form from "components/form/Form";
+import { auth } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
+import Checkbox from "components/inputs/Checkbox";
 
-function SignIn() {
-  const [username, setUsername] = useState<string>("");
+const SignIn: FC = () => {
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errors, setErrors] = useState<{
-    username: string | undefined;
+    email: string | undefined;
     password: string | undefined;
   }>({
-    username: undefined,
+    email: undefined,
     password: undefined,
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -25,32 +31,29 @@ function SignIn() {
   const [stayLoggedIn, setStayLoggedIn] = useState(false);
 
   const validateFields = () => {
-    let errors: { username: string | undefined; password: string | undefined } =
-      {
-        username: username === "" ? "Username is required" : undefined,
-        password: password === "" ? "Password is required" : undefined,
-      };
+    let errors: { email: string | undefined; password: string | undefined } = {
+      email: email === "" ? "email is required" : undefined,
+      password: password === "" ? "Password is required" : undefined,
+    };
     setErrors(errors);
-    // console.log(errors.username);
-    return !errors.username && !errors.password;
+    // console.log(errors.email);
+    return !errors.email && !errors.password;
   };
 
   const handleSignin = async () => {
     if (!validateFields()) return;
     try {
-      const response = await axios.post(
-        `${backend_config.backend_uri}/login/`,
-        {
-          username,
-          password,
-        },
-        { withCredentials: true }
+      await setPersistence(
+        auth,
+        stayLoggedIn ? browserLocalPersistence : browserSessionPersistence
       );
+      const response = await signInWithEmailAndPassword(auth, email, password);
       setLoggedIn(true);
       console.log(response);
       navigate("/");
     } catch (error: any) {
-      setErrorMessage(error.response.data.detail);
+      console.error("[SignIn] Error signing in: ", error.code);
+      setErrorMessage(error.message);
     }
   };
 
@@ -60,27 +63,21 @@ function SignIn() {
         <label>Sign in</label>
         <TextInput
           type="text"
-          placeholder="username"
-          className={
-            "w-full max-w-xs text-center rounded-md" +
-            (errors.username ? " border-red-500 border-2" : "")
-          }
-          value={username}
+          placeholder="email"
+          className={errors.email ? " border-red-500 border-2" : ""}
+          value={email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            errors.username &&
-              setErrors((prev) => ({ ...prev, username: undefined }));
+            errors.email &&
+              setErrors((prev) => ({ ...prev, email: undefined }));
             errorMessage !== "" && setErrorMessage("");
-            setUsername(e.target.value);
+            setEmail(e.target.value);
           }}
-          error={errors.username}
+          error={errors.email}
         />
         <TextInput
           type="password"
           placeholder="password"
-          className={
-            "w-full max-w-xs text-center rounded-md" +
-            (errors.password ? " border-red-500 border-2" : "")
-          }
+          className={errors.password ? " border-red-500 border-2" : ""}
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             errors.password &&
@@ -90,6 +87,10 @@ function SignIn() {
           }}
           error={errors.password}
         />
+        <div className="flex gap-4 items-center">
+          <Checkbox />
+          <p>Stay logged in</p>
+        </div>
         {errorMessage && (
           <div className="flex gap-2 items-center w-full max-w-xs">
             <AiOutlineExclamationCircle style={{ fill: "red" }} />
@@ -112,6 +113,6 @@ function SignIn() {
       </Form>
     </div>
   );
-}
+};
 
 export default SignIn;

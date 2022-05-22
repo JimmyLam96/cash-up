@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Form from "components/form/Form";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -53,9 +54,8 @@ function SignUp() {
       const user = response.user;
       console.log(response);
     } catch (error: any) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setErrorMessage(errorMessage);
+      console.error("[SignUp] Error signing up: ", error.code);
+      setErrorMessage(error.message);
     }
   };
 
@@ -96,6 +96,12 @@ function SignUp() {
           }}
           error={errors.rePassword}
         />
+        {errorMessage && (
+          <div className="flex gap-2 items-center w-full max-w-xs">
+            <AiOutlineExclamationCircle style={{ fill: "red" }} />
+            <p className="text-red-500 text-xs">{errorMessage}</p>
+          </div>
+        )}
         <div className="flex gap-3">
           <Button onClick={handleSignUp}>Submit</Button>
           <Button>Cancel</Button>

@@ -1,6 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 
-function Form({ children, ...rest }: { children: any }) {
+type props = {
+  children?: any;
+  [key: string]: any;
+};
+
+const Form: FC<props> = ({ children, ...rest }: props) => {
   return (
     <form
       className="
@@ -17,6 +22,6 @@ function Form({ children, ...rest }: { children: any }) {
       {children}
     </form>
   );
-}
+};
 
 export default Form;

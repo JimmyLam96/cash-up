@@ -1,3 +1,5 @@
+import { auth } from "../firebase";
+import { onAuthStateChanged, User } from "firebase/auth";
 import React, {
   createContext,
   ReactNode,
@@ -17,32 +19,27 @@ interface props {
 }
 
 export function UserProvider({ children }: props) {
-  const [user, setUser] = useState();
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>();
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setAccessToken(localStorage.getItem("accessToken"));
-      setRefreshToken(localStorage.getItem("refreshToken"));
-      setLoggedIn(true);
-    } else if (sessionStorage.getItem("accessToken")) {
-      setAccessToken(sessionStorage.getItem("accessToken"));
-      setRefreshToken(sessionStorage.getItem("refreshToken"));
-      setLoggedIn(true);
-    }
-  }, []);
+    console.log(localStorage);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        return setLoggedIn(true);
+      }
+      setUser(null);
+      setLoggedIn(false);
+    });
+    return () => unsubscribe();
+  }, [user]);
 
   const values = {
     loggedIn,
     setLoggedIn,
     user,
     setUser,
-    accessToken,
-    refreshToken,
-    setAccessToken,
-    setRefreshToken,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
