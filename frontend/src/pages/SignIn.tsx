@@ -1,6 +1,5 @@
 import React, { useState, FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useCurrentUser from "contexts/UserContext";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import TextInput from "components/inputs/TextInput";
 import Button from "components/butttons/Button";
@@ -100,11 +99,8 @@ const SignIn: FC = () => {
         )}
         <p>
           No account yet?{" "}
-          <Link
-            to="/signup"
-            className="text-secondary-orange hover:border-b-2 hover:border-secondary-orange"
-          >
-            Sign up
+          <Link to="/signup">
+            <Button className="text-secondary-orange">Sign up</Button>
           </Link>
         </p>
         <div className="flex gap-4 justify-center">

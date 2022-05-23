@@ -11,11 +11,9 @@ const Button: FC<props> = ({ className, children, ...rest }: props) => {
     <button
       type="button"
       className={`
-        text-black
-        p-2 
-        rounded-md
-        transition ease-in-out
-        hover:bg-secondary-orange
+        transition ease-in-out 
+        border-b-2 border-transparent
+        hover:border-secondary-orange
         ${className}
       `}
       {...rest}
