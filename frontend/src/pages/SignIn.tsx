@@ -26,8 +26,6 @@ const SignIn: FC = () => {
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
-  const { accessToken, setLoggedIn, setAccessToken, setRefreshToken } =
-    useCurrentUser();
   const [stayLoggedIn, setStayLoggedIn] = useState(false);
 
   const validateFields = () => {
@@ -47,9 +45,7 @@ const SignIn: FC = () => {
         auth,
         stayLoggedIn ? browserLocalPersistence : browserSessionPersistence
       );
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      setLoggedIn(true);
-      console.log(response);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error: any) {
       console.error("[SignIn] Error signing in: ", error.code);
@@ -88,7 +84,12 @@ const SignIn: FC = () => {
           error={errors.password}
         />
         <div className="flex gap-4 items-center">
-          <Checkbox />
+          <Checkbox
+            checked={stayLoggedIn}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setStayLoggedIn(!stayLoggedIn)
+            }
+          />
           <p>Stay logged in</p>
         </div>
         {errorMessage && (

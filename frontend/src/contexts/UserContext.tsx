@@ -1,12 +1,6 @@
 import { auth } from "../firebase";
-import { onAuthStateChanged, User } from "firebase/auth";
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import React, { createContext, ReactNode, useContext } from "react";
 
 const UserContext = createContext({} as value);
 
@@ -19,27 +13,12 @@ interface props {
 }
 
 export function UserProvider({ children }: props) {
-  const [user, setUser] = useState<User | null>();
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    console.log(localStorage);
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        return setLoggedIn(true);
-      }
-      setUser(null);
-      setLoggedIn(false);
-    });
-    return () => unsubscribe();
-  }, [user]);
+  const [user, loading, error] = useAuthState(auth);
 
   const values = {
-    loggedIn,
-    setLoggedIn,
     user,
-    setUser,
+    userLoading: loading,
+    error,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

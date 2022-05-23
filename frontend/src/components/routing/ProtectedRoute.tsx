@@ -1,10 +1,21 @@
+import ThreeDotsWave from "components/animations/ThreeDotsWave";
 import useCurrentUser from "contexts/UserContext";
-import React from "react";
+import { FC } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-function ProtectedRoute() {
-  const { loggedIn } = useCurrentUser();
-  return loggedIn ? <Outlet /> : <Navigate to="/signin" />;
-}
+const ProtectedRoute: FC = () => {
+  const { user, userLoading } = useCurrentUser();
+
+  if (userLoading) {
+    return (
+      <div className="flex flex-col w-full h-full items-center justify-center">
+        <ThreeDotsWave />
+        <p>Loading</p>
+      </div>
+    );
+  }
+
+  return user ? <Outlet /> : <Navigate to="/signin" />;
+};
 
 export default ProtectedRoute;
