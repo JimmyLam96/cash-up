@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import Button from "components/butttons/Button";
 import ThreeDotsWave from "components/animations/ThreeDotsWave";
+import MainLayout from "layouts/MainLayout";
 
 const Dashboard: FC = () => {
   const { accessToken } = useCurrentUser();
@@ -31,12 +32,12 @@ const Dashboard: FC = () => {
     }
   };
   return (
-    <div>
+    <MainLayout>
       Dashboard
       <Button onClick={handleClick}>show customers</Button>
       <Button onClick={handleSignOut}>Sign out</Button>
       <p>customer 1 stats: {JSON.stringify(data)}</p>
-    </div>
+    </MainLayout>
   );
 };
 
