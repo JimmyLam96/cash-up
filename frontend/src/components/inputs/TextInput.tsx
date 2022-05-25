@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 type props = {

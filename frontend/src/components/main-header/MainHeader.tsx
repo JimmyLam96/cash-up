@@ -1,5 +1,15 @@
 import Button from "components/butttons/Button";
-import React, { FC } from "react";
+import { FC } from "react";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
+
+const handleSignOut = async () => {
+  try {
+    await signOut(auth);
+  } catch (error: any) {
+    console.error("[Dashboard] Error signing out: ", error.code);
+  }
+};
 
 const MainHeader: FC = () => {
   return (
@@ -7,6 +17,7 @@ const MainHeader: FC = () => {
       <Button to="/cashier">Cashier</Button>
       <Button to="/delivery">Delivery</Button>
       <Button to="/settings">Settings</Button>
+      <Button onClick={handleSignOut}>Sign out</Button>
     </div>
   );
 };

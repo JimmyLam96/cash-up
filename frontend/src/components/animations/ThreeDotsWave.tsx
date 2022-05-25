@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 
 const loadingCircle = "bg-black flex w-2 h-2 justify-around rounded-md";
