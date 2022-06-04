@@ -60,7 +60,10 @@ function SignUp() {
   };
 
   return (
-    <div id="background" className="flex items-center w-full justify-center ">
+    <div
+      id="background"
+      className="flex items-center w-full justify-center h-full"
+    >
       <Form>
         <label>Sign up</label>
         <TextInput

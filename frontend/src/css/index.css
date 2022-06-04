@@ -8,7 +8,10 @@
   box-sizing: border-box;
 }
 
-body > #root > div {
+html,
+body,
+#root {
   width: 100%;
   min-height: 100vh;
+  height: 100%;
 }

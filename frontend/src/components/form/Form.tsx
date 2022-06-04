@@ -14,7 +14,7 @@ const Form: FC<props> = ({ children, ...rest }: props) => {
         gap-4 
         bg-primary-light
         p-5 m-3 
-        w-full max-w-2xl h-2/4 
+        w-full max-w-2xl
         rounded-md
         shadow-lg"
       {...rest}

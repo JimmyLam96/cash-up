@@ -7,10 +7,10 @@ type props = {
 
 const MainLayout: FC = ({ children }: props) => {
   return (
-    <div className="w-full h-full">
+    <main className="flex flex-col w-full h-full">
       <MainHeader />
       {children}
-    </div>
+    </main>
   );
 };
 
