@@ -2,6 +2,7 @@ import { FC } from "react";
 import MainLayout from "layouts/MainLayout";
 import Products from "components/cashier/Products";
 import Receipt from "components/cashier/Receipt";
+import { db } from "../firebase";
 
 const Cashier: FC = () => {
   return (
