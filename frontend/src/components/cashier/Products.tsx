@@ -3,6 +3,8 @@ import { addDoc, getDocs, collection, DocumentData } from "firebase/firestore";
 import { db } from "../../firebase";
 import CashierProduct from "components/butttons/CashierProduct";
 import { BsPlusLg } from "react-icons/bs";
+import { useReceiptContext } from "contexts/ReceiptProvider";
+import { Product } from "interfaces/product.interface";
 
 const addNewProduct = async ({
   name,
@@ -32,21 +34,24 @@ const addNewProduct = async ({
 type props = {
   className?: string;
 };
-
 const Products: FC<props> = ({ className, ...rest }: props) => {
-  const [products, setProducts] = useState<DocumentData[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<DocumentData[]>([]);
+  const { addSelectedProduct } = useReceiptContext();
 
   useEffect(() => {
     let isMounted = true;
 
     const getAndSetDocs = async (
       collectionName: string,
-      setState: (data: DocumentData[]) => void
+      setState: <T extends Product>(data: T[]) => void
     ) => {
       try {
         const snapshot = await getDocs(collection(db, collectionName));
-        const data = snapshot.docs.map((doc) => doc.data());
+        const data: any[] = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setState(data);
       } catch (e) {
         console.error("Error getting documents: ", e);
@@ -78,7 +83,7 @@ const Products: FC<props> = ({ className, ...rest }: props) => {
 
           {categories.map((category, index) => {
             return (
-              <CashierProduct className="bg-secondary-orange">
+              <CashierProduct key={index} className="bg-secondary-orange">
                 <h5>{category.display_name}</h5>
                 <h5>{category.price}</h5>
               </CashierProduct>
@@ -96,7 +101,10 @@ const Products: FC<props> = ({ className, ...rest }: props) => {
 
           {products.map((product, index) => {
             return (
-              <CashierProduct>
+              <CashierProduct
+                key={index}
+                onClick={() => addSelectedProduct(product)}
+              >
                 <h5>{product.display_name}</h5>
                 <h5>{product.price}</h5>
               </CashierProduct>
