@@ -2,20 +2,24 @@ import { FC, useEffect, useState } from "react";
 import { addDoc, getDocs, collection, DocumentData } from "firebase/firestore";
 import { db } from "../../firebase";
 import CashierProduct from "components/butttons/CashierProduct";
+import { BsPlusLg } from "react-icons/bs";
 
 const addNewProduct = async ({
   name,
   price,
+  category,
   description,
 }: {
   name: string;
   price: number;
+  category: string;
   description: string;
 }) => {
   try {
     const docRef = await addDoc(collection(db, "products"), {
       name,
       price,
+      category,
       description,
     });
 
@@ -31,21 +35,27 @@ type props = {
 
 const Products: FC<props> = ({ className, ...rest }: props) => {
   const [products, setProducts] = useState<DocumentData[]>([]);
+  const [categories, setCategories] = useState<DocumentData[]>([]);
 
   useEffect(() => {
     let isMounted = true;
 
-    const getAllProducts = async () => {
+    const getAndSetDocs = async (
+      collectionName: string,
+      setState: (data: DocumentData[]) => void
+    ) => {
       try {
-        const products = await getDocs(collection(db, "products"));
-        setProducts(products.docs);
+        const snapshot = await getDocs(collection(db, collectionName));
+        const data = snapshot.docs.map((doc) => doc.data());
+        setState(data);
       } catch (e) {
         console.error("Error getting documents: ", e);
       }
     };
 
     if (isMounted) {
-      getAllProducts();
+      getAndSetDocs("products", setProducts);
+      getAndSetDocs("categories", setCategories);
     }
 
     return () => {
@@ -54,21 +64,46 @@ const Products: FC<props> = ({ className, ...rest }: props) => {
   }, []);
 
   return (
-    <div className={`flex flex-col ${className}`} {...rest}>
-      <ul className="flex gap-3">
-        {products.map((product, index) => {
-          return (
-            <li key={index}>
-              <CashierProduct
-                name={
-                  product._document.data.value.mapValue.fields.name.stringValue
-                }
-              />
-            </li>
-          );
-        })}
-        <CashierProduct name="Add new product" onClick={addNewProduct} />
-      </ul>
+    <div className={`flex flex-col p-4 gap-3 ${className}`} {...rest}>
+      <div className="flex flex-col gap-2">
+        <h2>Categories</h2>
+        <ul className="flex gap-3">
+          <CashierProduct
+            className="bg-secondary-orange"
+            onClick={addNewProduct}
+          >
+            <BsPlusLg />
+            <h3 className="text-md">Add new</h3>
+          </CashierProduct>
+
+          {categories.map((category, index) => {
+            return (
+              <CashierProduct className="bg-secondary-orange">
+                <h5>{category.display_name}</h5>
+                <h5>{category.price}</h5>
+              </CashierProduct>
+            );
+          })}
+        </ul>
+      </div>
+      <div className="flex flex-col gap-2">
+        <h2>Products</h2>
+        <ul className="flex gap-3">
+          <CashierProduct onClick={addNewProduct}>
+            <BsPlusLg />
+            <h3 className="text-md">Add new</h3>
+          </CashierProduct>
+
+          {products.map((product, index) => {
+            return (
+              <CashierProduct>
+                <h5>{product.display_name}</h5>
+                <h5>{product.price}</h5>
+              </CashierProduct>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
