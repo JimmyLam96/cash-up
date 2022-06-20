@@ -71,14 +71,14 @@ const Products: FC<props> = ({ className, ...rest }: props) => {
   return (
     <div className={`flex flex-col p-4 gap-3 ${className}`} {...rest}>
       <div className="flex flex-col gap-2">
-        <h2>Categories</h2>
+        <h4>Categories</h4>
         <ul className="flex gap-3">
           <CashierProduct
             className="bg-secondary-orange"
             onClick={addNewProduct}
           >
             <BsPlusLg />
-            <h3 className="text-md">Add new</h3>
+            <h4 className="text-md">Add new</h4>
           </CashierProduct>
 
           {categories.map((category, index) => {
@@ -92,11 +92,11 @@ const Products: FC<props> = ({ className, ...rest }: props) => {
         </ul>
       </div>
       <div className="flex flex-col gap-2">
-        <h2>Products</h2>
+        <h4>Products</h4>
         <ul className="flex gap-3">
           <CashierProduct onClick={addNewProduct}>
             <BsPlusLg />
-            <h3 className="text-md">Add new</h3>
+            <h4 className="text-md">Add new</h4>
           </CashierProduct>
 
           {products.map((product, index) => {

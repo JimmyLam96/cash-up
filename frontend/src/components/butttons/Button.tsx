@@ -20,6 +20,7 @@ const Button: FC<buttonProps> = ({
   to,
   ...rest
 }: buttonProps) => {
+  console.log(className);
   return (
     <LinkWrapper to={to}>
       <button
@@ -27,7 +28,7 @@ const Button: FC<buttonProps> = ({
         className={`
         transition ease-in-out 
         border-b-2 border-transparent
-        hover:border-secondary-orange
+        hover:border-secondary-orange 
         ${className}
       `}
         {...rest}
